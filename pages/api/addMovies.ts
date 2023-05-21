@@ -16,8 +16,8 @@ export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     const response = await fetch(
       `https://api.themoviedb.org/3/find/${imdbID}?api_key=${process.env.NEXT_PUBLIC_TMDB_MOVIE_KEY}&language=en-US&external_source=imdb_id`,
     );
+    console.log("response:", response);
     const data = await response.json();
-
     if (data.movie_results.length > 0) {
       const id = data.movie_results[0].id;
       const item = data.movie_results[0];
