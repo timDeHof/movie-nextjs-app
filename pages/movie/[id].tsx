@@ -1,5 +1,5 @@
 import axios from "axios";
-import localforage from "localforage";
+import localForage from "localforage";
 import { useEffect, useState } from "react";
 import Layout from "../../components/layout";
 
@@ -9,7 +9,7 @@ const Movie = (props: { movie: any }) => {
 
   useEffect(() => {
     const setBookMarkOnInit = async () => {
-      const movies: any = await localforage.getItem("movies");
+      const movies: any = await localForage.getItem("movies");
       if (movies && movies.length === 0) {
         const filterMovie = movies.filter(
           (data: any) => data.movie_id === movie.id,
@@ -25,7 +25,7 @@ const Movie = (props: { movie: any }) => {
 
   const handleBookmark = async () => {
     console.log("store the data in indexDB");
-    const data = await localforage.getItem("movies");
+    const data = await localForage.getItem("movies");
 
     const movieDataToStore = {
       movie_id: movie.id,
@@ -36,17 +36,17 @@ const Movie = (props: { movie: any }) => {
       vote_average: movie.vote_average,
     };
     if (!data) {
-      localforage.setItem("movies", [movieDataToStore]);
+      localForage.setItem("movies", [movieDataToStore]);
       setBookMarkedStatus(true);
     } else {
-      const existingData: any = await localforage.getItem("movies");
+      const existingData: any = await localForage.getItem("movies");
       const filteredData: any = existingData.filter(
         (data: { movie_id: any }) => movie.id === data.movie_id,
       );
       console.log("movie exists", filteredData);
       if (filteredData.length === 0) {
         // movie does not exists in the indexDB
-        localforage.setItem("movies", [...existingData, movieDataToStore]);
+        localForage.setItem("movies", [...existingData, movieDataToStore]);
         setBookMarkedStatus(!bookmarkStatus);
       }
     }
@@ -123,7 +123,7 @@ export async function getServerSideProps(context: any) {
   const { id } = context.query;
 
   const response = await axios(
-    `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.NEXT_LOCAL_TMDB_MOVIE_KEY}&language=en-US`,
+    `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.NEXT_PUBLIC_TMDB_MOVIE_KEY}&language=en-US`,
   );
 
   const data = await response.data;

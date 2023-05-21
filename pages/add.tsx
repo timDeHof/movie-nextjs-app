@@ -9,6 +9,7 @@ const Add = () => {
     try {
       const response = await fetch(`/api/addMovies?imdbID=${id}`);
       const data = await response.json();
+      console.log("data in add.tsx", data);
       if (response.status === 200 && data.id) {
         console.log(
           "Added the movie succesfully, redirecting to the movie page",
