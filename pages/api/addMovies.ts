@@ -7,7 +7,7 @@ type Data = {
   data?: any;
   id?: number;
 };
-const AddMovie = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
+export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   try {
     const imdbID = req.query.imdbID;
     const sdk = initAppwrite();
@@ -35,7 +35,7 @@ const AddMovie = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
         // add the movie to the database
         await database.createDocument(
           process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID as string,
-          process.env.APPWRITE_COLLECTION_ID as string,
+          process.env.NEXT_PUBLIC_APPWRITE_COLLECTION_ID as string,
           uuidv4(),
           {
             movie_id: id,
@@ -57,5 +57,3 @@ const AddMovie = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     res.status(500).json({ data: e });
   }
 };
-
-export default AddMovie;

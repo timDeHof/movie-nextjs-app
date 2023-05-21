@@ -2,8 +2,8 @@ import type { NextPage } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import Layout from "./layout";
-import Pagination from "../conponents/Pagination";
+import Layout from "../components/layout";
+import Pagination from "../components/Pagination";
 
 const Home: NextPage = () => {
   const [offset, setOffset] = useState(0);
@@ -23,6 +23,7 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     fetchMovies(pageLimit, offset);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [offset]);
 
   const handleNextPage = () => {
@@ -43,7 +44,7 @@ const Home: NextPage = () => {
         <div className='mt-6 grid grid-cols-1 gap-16 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-20'>
           {movies.map((movie: any) => {
             return (
-              <a className='cursor-pointer' key={movie.movie_id}>
+              <div className='cursor-pointer' key={movie.movie_id}>
                 <Link href={`/movie/${movie.movie_id}`}>
                   <div key={movie.movie_id} className='group relative'>
                     <div className='min-h-80 aspect-w-1 aspect-h-1 lg:aspect-none w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:h-80'>
@@ -66,7 +67,7 @@ const Home: NextPage = () => {
                     </div>
                   </div>
                 </Link>
-              </a>
+              </div>
             );
           })}
         </div>

@@ -7,7 +7,7 @@ const Add = () => {
   const router = useRouter();
   const handleAddMovie = async () => {
     try {
-      const response = await fetch(`/api/addMovie?imdbID=${id}`);
+      const response = await fetch(`/api/addMovies?imdbID=${id}`);
       const data = await response.json();
       if (response.status === 200 && data.id) {
         console.log(
