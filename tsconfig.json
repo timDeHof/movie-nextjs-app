@@ -28,7 +28,10 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "app/pages/seed.js"
+    "pages/seed.js",
+    "styles/globals.css",
+    "components/layout.tsx",
+    "components/Pagination.tsx"
   ],
   "exclude": ["node_modules"]
 }
