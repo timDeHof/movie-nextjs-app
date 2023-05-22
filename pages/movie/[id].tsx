@@ -1,4 +1,5 @@
 import axios from "axios";
+import Image from "next/image";
 import localForage from "localforage";
 import { useEffect, useState } from "react";
 import Layout from "../../components/layout";
@@ -56,9 +57,14 @@ const Movie = (props: { movie: any }) => {
     <>
       <Layout>
         <div className='flex flex-col space-y-8 items-center lg:items-start lg:flex-row lg:space-x-8 lg:space-y-0'>
-          <img
+          <Image
             src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
-            className='w-2/3 lg:w-1/4'
+            alt={movie.title}
+            width={320}
+            height={460}
+            objectFit='contain'
+            objectPosition='center'
+            className='w-2/3 rounded-md lg:w-1/4'
           />
           <div className='flex flex-col justify-items-start space-y-12'>
             <div className='flex flex-col  items-center justify-between space-y-2 lg:space-y-4 lg:items-start'>
