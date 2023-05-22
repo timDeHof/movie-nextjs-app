@@ -47,11 +47,14 @@ const Home: NextPage = () => {
               <div className='cursor-pointer' key={movie.movie_id}>
                 <Link href={`/movie/${movie.movie_id}`}>
                   <div key={movie.movie_id} className='group relative'>
-                    <div className='min-h-80 aspect-w-1 aspect-h-1 lg:aspect-none w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:h-80'>
-                      <img
+                    <div className='min-h-fit aspect-w-1 aspect-h-1 lg:aspect-none w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:h-90'>
+                      <Image
                         src={movie.thumbnail_image}
                         alt={movie.title}
-                        className='h-full w-full object-cover object-center lg:h-full lg:w-full'
+                        width={320}
+                        height={460}
+                        objectFit='contain'
+                        objectPosition='center'
                       />
                     </div>
                     <div className='mt-4 flex justify-between'>
