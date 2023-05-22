@@ -27,15 +27,15 @@ const Add = () => {
 
   return (
     <Layout>
-      <label className='flex flex-row space-x-2'>
+      <label className='flex flex-row justify-center'>
         <input
           type='text'
-          className=' block w-1/2'
+          className=' block w-1/2 border-2 border-black rounded-l-lg px-6'
           placeholder='Enter IMDB ID'
           onChange={(e) => setImdbId(e.target.value)}
         />
         <button
-          className='bg-black p-2 px-4 text-lg text-white'
+          className='bg-black p-2 px-4 text-lg text-white rounded-r-lg'
           onClick={handleAddMovie}>
           Add Movie
         </button>

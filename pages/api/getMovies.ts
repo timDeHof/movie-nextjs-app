@@ -20,7 +20,7 @@ export default async function handler(
       // limit,
       // offset,
     );
-    console.log(response.total);
+    // console.log(response.total);
     res.status(200).json({ data: response, count: response.total });
   } catch (e) {
     res.status(500).json({ data: e });
