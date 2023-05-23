@@ -12,13 +12,13 @@ const Search: NextPage = () => {
     try {
       const response = await fetch(`/api/searchMovies?query=${query}`);
       const data = await response.json();
-      console.log("data in add.tsx", data);
-      setAllMovies(data.movies);
+
+      setAllMovies(data.data);
     } catch (e) {
       console.log(e);
     }
   };
-  console.log(allMovies);
+
   return (
     <Layout>
       <label className='flex flex-row justify-center'>
@@ -35,8 +35,8 @@ const Search: NextPage = () => {
         </button>
       </label>
       <div className='flex flex-wrap justify-center'>
-        {allMovies.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} />
+        {allMovies.map((movie, id) => (
+          <MovieCard key={id} movie={movie} />
         ))}
       </div>
     </Layout>

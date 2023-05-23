@@ -11,7 +11,7 @@ const Home: NextPage = () => {
   const [totalMovies, setTotalMovies] = useState(0);
   const [movies, setMovies] = useState([]);
 
-  const fetchMovies = async (limit: any, offset: any) => {
+  const fetchMovies = async (limit: Number, offset: Number) => {
     const response = await fetch(
       `/api/getMovies?limit=${limit}&offset=${offset}`,
     );

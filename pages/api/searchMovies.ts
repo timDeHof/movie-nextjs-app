@@ -16,10 +16,11 @@ export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
       `https://api.themoviedb.org/3/search/movie?query=${query}&api_key=${process.env.NEXT_PUBLIC_TMDB_MOVIE_KEY}&include_adult=false&language=en-US&page=1`,
     );
     const data = await response.data;
-    console.log("data:", data);
+    // console.log("data:", data);
     if (data.results.length > 0) {
       const movies = data.results;
-      return res.status(200).json({ movies });
+      // console.log("movies:", movies);
+      return res.status(200).json({ data: movies });
     } else {
       console.log("it is not a movie");
     }

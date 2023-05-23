@@ -7,8 +7,8 @@ export default async function handler(
   res: NextApiResponse,
 ) {
   try {
-    const limit: Number = parseInt(req.query.limit);
-    const offset: Number = parseInt(req.query.offset);
+    const limit: any = req.query.limit;
+    const offset: any = req.query.offset;
 
     let response = await databases.listDocuments(
       process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID as string,
