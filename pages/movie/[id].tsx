@@ -3,56 +3,74 @@ import Image from "next/image";
 import localForage from "localforage";
 import { useEffect, useState } from "react";
 import Layout from "../../components/layout";
-
+import { useRouter } from "next/router";
 const Movie = (props: { movie: any }) => {
+  const router = useRouter();
   const { movie } = props;
-  const [bookmarkStatus, setBookMarkedStatus] = useState(false);
+  // const [watchlistStatus, setWatchlistStatus] = useState(false);
 
-  useEffect(() => {
-    const setBookMarkOnInit = async () => {
-      const movies: any = await localForage.getItem("movies");
-      if (movies && movies.length === 0) {
-        const filterMovie = movies.filter(
-          (data: any) => data.movie_id === movie.id,
+  // useEffect(() => {
+  //   const setWatchlistOnInit = async () => {
+  //     const watchlist: any = await localForage.getItem("watchlist");
+  //     if (watchlist && watchlist.length === 0) {
+  //       const filterMovie = watchlist.filter(
+  //         (data: any) => data.movie_id === movie.id,
+  //       );
+  //       console.log(filterMovie);
+  //       if (filterMovie.length > 0) {
+  //         setWatchlistStatus(true);
+  //       }
+  //     }
+  //   };
+  //   setWatchlistOnInit();
+  // }, []);
+
+  // const handleWatchlist = async () => {
+  //   console.log("store the data in indexDB");
+  //   const data = await localForage.getItem("watchlist");
+  //   console.log("data to store: ", data);
+  //   const movieDataToStore = {
+  //     movie_id: movie.id,
+  //     title: movie.title,
+  //     thumbnail_image: `https://image.tmdb.org/t/p/original/${movie.poster_path}`,
+  //     popularity: movie.popularity,
+  //     release_date: movie.release_date,
+  //     vote_average: movie.vote_average,
+  //   };
+  //   if (!data) {
+  //     localForage.setItem("watchlist", [movieDataToStore]);
+  //     setWatchlistStatus(true);
+  //   } else {
+  //     const existingData: any = await localForage.getItem("watchlist");
+  //     const filteredData: any = existingData.filter(
+  //       (data: { movie_id: any }) => movie.id === data.movie_id,
+  //     );
+  //     console.log("movie exists", filteredMovie);
+  //     if (filteredData.length === 0) {
+  //       // movie does not exists in the indexDB
+  //       localForage.setItem("movies", [...existingData, movieDataToStore]);
+  //       setBookMarkedStatus(!bookmarkStatus);
+  //     }
+  //   }
+  // };
+  const handleAddMovie = async () => {
+    try {
+      const response = await fetch(`/api/addMovies?imdbID=${movie.imdb_id}`);
+      const data = await response.json();
+      if (response.status === 200 && data.id) {
+        console.log(
+          "Added the movie succesfully, redirecting to the movie page",
         );
-        console.log(filterMovie);
-        if (filterMovie.length > 0) {
-          setBookMarkedStatus(true);
-        }
+        return router.push(`/search`);
       }
-    };
-    setBookMarkOnInit();
-  }, []);
-
-  const handleBookmark = async () => {
-    console.log("store the data in indexDB");
-    const data = await localForage.getItem("movies");
-
-    const movieDataToStore = {
-      movie_id: movie.id,
-      title: movie.title,
-      thumbnail_image: `https://image.tmdb.org/t/p/original/${movie.poster_path}`,
-      popularity: movie.popularity,
-      release_date: movie.release_date,
-      vote_average: movie.vote_average,
-    };
-    if (!data) {
-      localForage.setItem("movies", [movieDataToStore]);
-      setBookMarkedStatus(true);
-    } else {
-      const existingData: any = await localForage.getItem("movies");
-      const filteredData: any = existingData.filter(
-        (data: { movie_id: any }) => movie.id === data.movie_id,
-      );
-      console.log("movie exists", filteredData);
-      if (filteredData.length === 0) {
-        // movie does not exists in the indexDB
-        localForage.setItem("movies", [...existingData, movieDataToStore]);
-        setBookMarkedStatus(!bookmarkStatus);
+      if (response.status === 409 && data.id) {
+        console.log("Movie already exists, redirecting to the movie page");
+        return router.push(`/search`);
       }
+    } catch (e) {
+      console.log(e);
     }
   };
-
   return (
     <>
       <Layout>
@@ -62,8 +80,6 @@ const Movie = (props: { movie: any }) => {
             alt={movie.title}
             width={320}
             height={460}
-            objectFit='contain'
-            objectPosition='center'
             className='w-2/3 rounded-md lg:w-1/4'
           />
           <div className='flex flex-col justify-items-start space-y-12'>
@@ -73,14 +89,14 @@ const Movie = (props: { movie: any }) => {
                 {movie.title}{" "}
               </h1>
               <div className='flex flex-shrink-1 items-center  pr-2 text-sm space-x-2'>
-                <div className='rounded-r bg-green-200 px-2 py-1 text-green-700'>
+                <div className='rounded bg-green-200 px-2 py-1 text-green-700'>
                   <p> {movie.status} </p>
                 </div>
                 {movie.genres.map((genre: any) => {
                   return (
                     <div
                       key={genre.name}
-                      className='rounded-r bg-green-200 px-2 py-1 text-green-700 whitespace-nowrap'>
+                      className='rounded bg-green-200 px-2 py-1 text-green-700 whitespace-nowrap'>
                       <p> {genre.name} </p>
                     </div>
                   );
@@ -106,16 +122,9 @@ const Movie = (props: { movie: any }) => {
                 <span>Movie Homepage</span>
               </a>
               <button
-                className='flex items-center space-x-2   bg-black p-2 pl-5 pr-5 text-lg text-white '
-                onClick={handleBookmark}>
-                <svg
-                  className='w-6 h-6'
-                  fill='currentColor'
-                  viewBox='0 0 20 20'
-                  xmlns='http://www.w3.org/2000/svg'>
-                  <path d='M5 4a2 2 0 012-2h6a2 2 0 012 2v14l-5-2.5L5 18V4z'></path>
-                </svg>
-                <span> {bookmarkStatus ? "Bookmarked" : "Bookmark"} </span>
+                className='bg-black p-2 px-4 text-lg text-white rounded-lg'
+                onClick={handleAddMovie}>
+                Add Movie
               </button>
             </div>
           </div>

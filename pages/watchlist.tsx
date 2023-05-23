@@ -3,31 +3,31 @@ import { useEffect, useState } from "react";
 import localForage from "localforage";
 import Link from "next/link";
 
-const Bookmark = () => {
-  const [bookmarkedMovies, setBookMarkedMovies] = useState([]);
+const Watchlist = () => {
+  const [watchlist, setWatchlist] = useState([]);
   useEffect(() => {
-    const getMovieFromLocalStorage = async () => {
-      const bookMarkedMovies: any = await localForage.getItem("movies");
-      if (bookMarkedMovies && bookMarkedMovies.length !== 0) {
-        setBookMarkedMovies(bookMarkedMovies);
+    const getWatchlistFromLocalStorage = async () => {
+      const watchlist: any = await localForage.getItem("watchlist");
+      if (watchlist && watchlist.length !== 0) {
+        setWatchlist(watchlist);
       }
     };
-    getMovieFromLocalStorage();
+    getWatchlistFromLocalStorage();
   });
 
   const renderMovies = () => {
-    if (bookmarkedMovies.length === 0) {
+    if (watchlist.length === 0) {
       return (
         <>
           <p>
             {" "}
             No Bookmarked movies found. Head over to{" "}
-            <Link href={"/"}> Movies </Link>
+            <Link href={"/search"}> search for Movies </Link>
           </p>
         </>
       );
     }
-    return bookmarkedMovies.map((movie: any) => {
+    return watchlist.map((movie: any) => {
       return (
         <a className='cursor-pointer' key={movie.movie_id}>
           <Link href={`/movie/${movie.movie_id}`}>
@@ -67,4 +67,4 @@ const Bookmark = () => {
   );
 };
 
-export default Bookmark;
+export default Watchlist;
