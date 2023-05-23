@@ -15,16 +15,16 @@ const Layout = ({ children }: any) => {
                 Reel
               </p>
               <span className='title-font flex cursor-pointer items-center text-2xl font-medium text-sky-600'>
-                Rank
+                Watch
               </span>
             </div>
           </Link>
           <nav className='flex flex-wrap items-center justify-center text-base md:mr-auto md:ml-4 md:border-l md:border-gray-400 md:py-1 md:pl-4'>
             <span className='mr-5 hover:text-gray-900'>
-              <Link href='/add'>Add Movie</Link>
+              <Link href='/search'>Find Movies</Link>
             </span>
             <span className='mr-5 hover:text-gray-900'>
-              <Link href='/bookmark'>Bookmarks</Link>
+              <Link href='/bookmark'>Watchlist</Link>
             </span>
           </nav>
         </div>

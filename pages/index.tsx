@@ -8,23 +8,23 @@ import Pagination from "../components/Pagination";
 const Home: NextPage = () => {
   const [offset, setOffset] = useState(0);
   const [pageLimit] = useState(25);
-  const [totalPageCount, setTotalPageCount] = useState(0);
+  const [totalMovies, setTotalMovies] = useState(0);
   const [movies, setMovies] = useState([]);
 
-  const fetchMovies = async (limit: any, offset: any) => {
+  const fetchMovies = async (limit: Number, offset: Number) => {
     const response = await fetch(
       `/api/getMovies?limit=${limit}&offset=${offset}`,
     );
     const data = await response.json();
     console.log("data fetched:", data);
     setMovies(data.data.documents);
-    setTotalPageCount(data.count);
+    setTotalMovies(data.count);
   };
 
   useEffect(() => {
+    console.log("offset:", offset);
     fetchMovies(pageLimit, offset);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [offset]);
+  }, [pageLimit, offset]);
 
   const handleNextPage = () => {
     setOffset((prevOffset) => prevOffset + pageLimit);
@@ -53,8 +53,6 @@ const Home: NextPage = () => {
                         alt={movie.title}
                         width={320}
                         height={460}
-                        objectFit='contain'
-                        objectPosition='center'
                       />
                     </div>
                     <div className='mt-4 flex justify-between'>
@@ -76,10 +74,11 @@ const Home: NextPage = () => {
         </div>
       </section>
       <Pagination
-        totalMovies={totalPageCount}
+        key={offset}
+        totalMovies={totalMovies}
         postPerPage={pageLimit}
         nextOffset={offset + pageLimit}
-        currentPage={0}
+        currentPage={Math.floor(offset / pageLimit) + 1}
         handleNextPage={handleNextPage}
         handlePreviousPage={handlePreviousPage}
       />
