@@ -29,7 +29,7 @@ const Layout = ({ children }: any) => {
         <link rel='manifest' href='/images/site.webmanifest'></link>
         <title>ReelWatch</title>
       </Head>
-      <header className='body-font text-gray-600'>
+      <header className='body-font text-sky-600'>
         <div className='container mx-auto flex flex-col flex-wrap items-center p-8 bg-header-image bg-cover bg-[center_20%] bg-blend-multiply opacity-70 md:flex-row'>
           <Link href='/'>
             <div className='flex flex-row max-w-xs'>
@@ -40,22 +40,22 @@ const Layout = ({ children }: any) => {
                 height={32}
                 className='mr-2'
               />
-              <div className='flex justify-center items-center lg:border-l-black'>
+              <div className='flex justify-center items-end lg:border-l-black'>
                 <p className='title-font flex justify-center cursor-pointer items-center text-2xl font-medium text-white md:mb-0'>
                   Reel
                 </p>
-                <span className='title-font flex cursor-pointer items-center text-2xl font-medium text-sky-600'>
+                <span className='title-font flex cursor-pointer items-end  text-xl font-medium text-sky-600'>
                   Watch
                 </span>
               </div>
             </div>
           </Link>
           <nav className='flex flex-wrap items-center justify-center text-base md:mr-auto md:ml-4 md:border-l md:border-gray-400 md:py-1 md:pl-4'>
-            <span className='mr-5 hover:text-gray-900'>
+            <span className='mr-5 hover:text-sky-900'>
               <Link href='/search'>Find Movies</Link>
             </span>
-            <span className='mr-5 hover:text-gray-900'>
-              <Link href='/watchlist'>Watchlist</Link>
+            <span className='mr-5 hover:text-sky-900'>
+              <Link href='/watchlist'>My Watchlist</Link>
             </span>
           </nav>
         </div>
