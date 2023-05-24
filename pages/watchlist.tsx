@@ -2,6 +2,7 @@ import Layout from "../components/layout";
 import { useEffect, useState } from "react";
 import localForage from "localforage";
 import Link from "next/link";
+import Image from "next/image";
 
 const Watchlist = () => {
   const [watchlist, setWatchlist] = useState([]);
@@ -29,13 +30,14 @@ const Watchlist = () => {
     }
     return watchlist.map((movie: any) => {
       return (
-        <a className='cursor-pointer' key={movie.movie_id}>
+        <div className='cursor-pointer' key={movie.movie_id}>
           <Link href={`/movie/${movie.movie_id}`}>
             <div key={movie.movie_id} className='group relative'>
-              <div className='min-h-80 aspect-w-1 aspect-h-1 lg:aspect-none w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:h-80'>
-                <img
+              <div className='min-h-80 relative block aspect-w-1 aspect-h-1 lg:aspect-none w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:h-80'>
+                <Image
                   src={movie.thumbnail_image}
                   alt={movie.title}
+                  fill
                   className='h-full w-full object-cover object-center lg:h-full lg:w-full'
                 />
               </div>
@@ -52,7 +54,7 @@ const Watchlist = () => {
               </div>
             </div>
           </Link>
-        </a>
+        </div>
       );
     });
   };

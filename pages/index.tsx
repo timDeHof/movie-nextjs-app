@@ -16,13 +16,11 @@ const Home: NextPage = () => {
       `/api/getMovies?limit=${limit}&offset=${offset}`,
     );
     const data = await response.json();
-    console.log("data fetched:", data);
     setMovies(data.data.documents);
     setTotalMovies(data.count);
   };
 
   useEffect(() => {
-    console.log("offset:", offset);
     fetchMovies(pageLimit, offset);
   }, [pageLimit, offset]);
 
