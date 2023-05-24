@@ -14,8 +14,8 @@ const Search: NextPage = () => {
       const data = await response.json();
 
       setAllMovies(data.data);
-    } catch (e) {
-      console.log(e);
+    } catch (error) {
+      console.error(error);
     }
   };
 
