@@ -1,0 +1,1 @@
+import { MovieType } from "./movietype";
