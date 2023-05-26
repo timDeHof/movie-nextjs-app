@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { client, databases } from "../../lib/appwrite";
+import { databases } from "../../lib/appwrite";
 import { v4 as uuidv4 } from "uuid";
 import { Query } from "appwrite";
 type Data = {
@@ -17,7 +17,7 @@ export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     if (data.movie_results.length > 0) {
       const id = data.movie_results[0].id;
       const item = data.movie_results[0];
-      console.log("movie_results's id: ", id);
+
       const movieInDatabase = await databases.listDocuments(
         process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID as string,
         process.env.NEXT_PUBLIC_APPWRITE_COLLECTION_ID as string,

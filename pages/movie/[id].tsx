@@ -7,52 +7,7 @@ import { useRouter } from "next/router";
 const Movie = (props: { movie: any }) => {
   const router = useRouter();
   const { movie } = props;
-  // const [watchlistStatus, setWatchlistStatus] = useState(false);
 
-  // useEffect(() => {
-  //   const setWatchlistOnInit = async () => {
-  //     const watchlist: any = await localForage.getItem("watchlist");
-  //     if (watchlist && watchlist.length === 0) {
-  //       const filterMovie = watchlist.filter(
-  //         (data: any) => data.movie_id === movie.id,
-  //       );
-  //       console.log(filterMovie);
-  //       if (filterMovie.length > 0) {
-  //         setWatchlistStatus(true);
-  //       }
-  //     }
-  //   };
-  //   setWatchlistOnInit();
-  // }, []);
-
-  // const handleWatchlist = async () => {
-  //   console.log("store the data in indexDB");
-  //   const data = await localForage.getItem("watchlist");
-  //   console.log("data to store: ", data);
-  //   const movieDataToStore = {
-  //     movie_id: movie.id,
-  //     title: movie.title,
-  //     thumbnail_image: `https://image.tmdb.org/t/p/original/${movie.poster_path}`,
-  //     popularity: movie.popularity,
-  //     release_date: movie.release_date,
-  //     vote_average: movie.vote_average,
-  //   };
-  //   if (!data) {
-  //     localForage.setItem("watchlist", [movieDataToStore]);
-  //     setWatchlistStatus(true);
-  //   } else {
-  //     const existingData: any = await localForage.getItem("watchlist");
-  //     const filteredData: any = existingData.filter(
-  //       (data: { movie_id: any }) => movie.id === data.movie_id,
-  //     );
-  //     console.log("movie exists", filteredMovie);
-  //     if (filteredData.length === 0) {
-  //       // movie does not exists in the indexDB
-  //       localForage.setItem("movies", [...existingData, movieDataToStore]);
-  //       setBookMarkedStatus(!bookmarkStatus);
-  //     }
-  //   }
-  // };
   const handleAddMovie = async () => {
     try {
       const response = await fetch(`/api/addMovies?imdbID=${movie.imdb_id}`);
@@ -71,6 +26,7 @@ const Movie = (props: { movie: any }) => {
       console.log(e);
     }
   };
+
   return (
     <>
       <Layout>
