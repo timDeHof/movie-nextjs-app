@@ -1,16 +1,15 @@
 import axios from "axios";
 import Image from "next/image";
-import localForage from "localforage";
-import { useEffect, useState } from "react";
-import Layout from "../../components/layout";
+import Layout from "@Components/layout";
 import { useRouter } from "next/router";
+import Button from "@Components/button";
 const Movie = (props: { movie: any }) => {
   const router = useRouter();
   const { movie } = props;
 
   const handleAddMovie = async () => {
     try {
-      const response = await fetch(`/api/addMovies?imdbID=${movie.imdb_id}`);
+      const response = await fetch(`/api/addMovies?movieID=${movie.id}`);
       const data = await response.json();
       if (response.status === 200 && data.id) {
         console.log(
@@ -77,11 +76,7 @@ const Movie = (props: { movie: any }) => {
                 </svg>
                 <span>Movie Homepage</span>
               </a>
-              <button
-                className='bg-black p-2 px-4 text-lg text-white rounded-lg'
-                onClick={handleAddMovie}>
-                Add Movie
-              </button>
+              <Button onClick={handleAddMovie} text='Add Movie' />
             </div>
           </div>
         </div>

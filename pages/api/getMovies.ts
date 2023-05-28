@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next/types";
-import { client, databases } from "../../lib/appwrite";
+import { databases } from "../../lib/appwrite";
 import { Query } from "appwrite";
 
 export default async function handler(

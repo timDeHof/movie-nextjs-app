@@ -3,20 +3,22 @@ import { databases } from "../../lib/appwrite";
 import { v4 as uuidv4 } from "uuid";
 import { Query } from "appwrite";
 type Data = {
-  data?: any;
-  id?: number;
+  data?: string;
+  id: number;
 };
 export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   try {
-    const imdbID = req.query.imdbID;
+    const movieID = req.query.movieID;
 
     const response = await fetch(
-      `https://api.themoviedb.org/3/find/${imdbID}?api_key=${process.env.NEXT_PUBLIC_TMDB_MOVIE_KEY}&language=en-US&external_source=imdb_id`,
+      `https://api.themoviedb.org/3/movie/${movieID}?api_key=${process.env.NEXT_PUBLIC_TMDB_MOVIE_KEY}&language=en-US`,
     );
     const data = await response.json();
-    if (data.movie_results.length > 0) {
-      const id = data.movie_results[0].id;
-      const item = data.movie_results[0];
+    console.log("data in addMovies:", data);
+    console.log(Object.keys(data).length);
+    if (Object.keys(data).length > 0) {
+      const id = data.id;
+      const item = data;
 
       const movieInDatabase = await databases.listDocuments(
         process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID as string,
@@ -40,6 +42,8 @@ export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
             popularity: item.popularity,
             release_date: item.release_date,
             vote_average: item.vote_average,
+            watched: false,
+            runtime: item.runtime,
           },
         );
 
@@ -49,7 +53,12 @@ export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
       console.log("it is not a movie");
     }
   } catch (e) {
-    console.log(e);
-    res.status(500).json({ data: e });
+    if (typeof e === "string") {
+      console.log(e);
+      res.status(500).json({ id: 0, data: e });
+    } else {
+      console.log(e);
+      res.status(500).json({ id: 0, data: "An unknown error occurred" });
+    }
   }
 };
