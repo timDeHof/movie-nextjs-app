@@ -37,7 +37,7 @@ const Layout = ({ children }: any) => {
       </Head>
       {/* The header section */}
       <header className='body-font text-sky-600'>
-        <div className='container mx-auto flex flex-col flex-wrap items-center p-8 bg-header-image bg-cover bg-[center_20%] bg-blend-multiply opacity-70 md:flex-row'>
+        <div className='w-screen flex flex-col flex-wrap items-center p-8 bg-header-image bg-cover bg-[center_20%] bg-blend-multiply opacity-70 md:flex-row'>
           {/* The application logo */}
           <Link href='/'>
             <div className='flex flex-row max-w-xs'>

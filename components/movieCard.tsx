@@ -1,6 +1,8 @@
 import Link from "next/link";
 import React from "react";
 import Image from "next/image";
+import { WatchButton } from "./button";
+import { useRouter } from "next/router";
 
 type MovieCardProps = {
   movie: {
@@ -9,10 +11,31 @@ type MovieCardProps = {
     overview: string;
     poster_path: string;
     release_date: string;
+    runtime: Number;
   };
 };
 
 const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
+  const router = useRouter();
+  const handleAddMovie = async () => {
+    try {
+      const response = await fetch(`/api/addMovies?movieID=${movie.id}`);
+      const data = await response.json();
+      if (response.status === 200 && data.id) {
+        console.log(
+          "Added the movie succesfully, redirecting to the movie page",
+        );
+        return router.push(`/search`);
+      }
+      if (response.status === 409 && data.id) {
+        console.log("Movie already exists, redirecting to the movie page");
+        return router.push(`/search`);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <div className='cursor-pointer'>
       <Link href={`/movie/${movie.id}`}>
@@ -26,12 +49,13 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
           />
           <div className='px-6 py-4'>
             <div className='font-bold text-xl mb-2'>{movie.title}</div>
-            <p className='text-gray-700 text-base'>{movie.overview}</p>
+            <p className='text-gray-700 text-base truncate'>{movie.overview}</p>
           </div>
-          <div className='px-6 pt-4 pb-2'>
+          <div className='px-6 pt-4 pb-2 flex justify-between'>
             <span className='inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2'>
               {movie.release_date}
             </span>
+            <WatchButton onClick={handleAddMovie} text='watchlist' />
           </div>
         </div>
       </Link>

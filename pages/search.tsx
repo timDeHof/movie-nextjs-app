@@ -1,8 +1,9 @@
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import Layout from "../components/layout";
-import MovieCard from "@/components/movieCard";
+import Layout from "@Components/layout";
+import MovieCard from "@Components/movieCard";
+import { SearchButton } from "@Components/button";
 
 const Search: NextPage = () => {
   const [query, setQuery] = useState("");
@@ -12,7 +13,7 @@ const Search: NextPage = () => {
     try {
       const response = await fetch(`/api/searchMovies?query=${query}`);
       const data = await response.json();
-
+      console.log(data);
       setAllMovies(data.data);
     } catch (error) {
       console.error(error);
@@ -28,11 +29,7 @@ const Search: NextPage = () => {
           placeholder='Search for a movie'
           onChange={(e) => setQuery(e.target.value)}
         />
-        <button
-          className='bg-black p-2 px-4 text-lg text-white rounded-r-lg'
-          onClick={handleSearchMovie}>
-          find Movie
-        </button>
+        <SearchButton onClick={handleSearchMovie} text='find Movie' />
       </label>
       <div className='flex flex-wrap justify-center'>
         {allMovies.map((movie, id) => (
