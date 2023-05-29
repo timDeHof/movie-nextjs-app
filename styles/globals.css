@@ -8,6 +8,7 @@
   --background-end-rgb: 255, 255, 255;
   --icon: url(/images/add-icon.png);
   --remove: url(/images/remove-icon.png);
+  --approve: url(/images/approve-icon.png);
 }
 
 body {
