@@ -23,6 +23,7 @@
 
 - npm >=5.5.0
 - node >=9.3.0
+- an account to [appwrite.io](https://appwrite.io/)
 
 ## Getting Started
 
