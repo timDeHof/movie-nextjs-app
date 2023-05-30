@@ -144,7 +144,7 @@ const Register = () => {
               <input
                 id='confirmPassword'
                 name='confirmPassword'
-                type={showPasswords ? "password" : "text"}
+                type={showPasswords ? "text" : "password"}
                 autoComplete='new-password'
                 required
                 className='relative block w-full appearance-none text-gray-900 placeholder-gray-500 focus:outline-none'
