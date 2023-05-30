@@ -10,7 +10,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { Routes } from "../config/routes";
 import { useRouter } from "next/router";
-import { useAppwrite } from "@/providers/appwriteProvider";
+import { useAppwrite } from "../providers/appwriteProvider";
 // Importing an SVG logo file as a variable named 'reelLogo'
 import reelLogo from "../assets/film-reel-svgrepo-com.svg";
 
