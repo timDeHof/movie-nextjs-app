@@ -8,11 +8,25 @@ const inter = Inter({ subsets: ["latin"] });
 import Link from "next/link";
 import Head from "next/head";
 import Image from "next/image";
-
+import { Routes } from "../config/routes";
+import { useRouter } from "next/router";
+import { useAppwrite } from "@/providers/appwriteProvider";
 // Importing an SVG logo file as a variable named 'reelLogo'
 import reelLogo from "../assets/film-reel-svgrepo-com.svg";
 
 const Layout = ({ children }: any) => {
+  const router = useRouter();
+  const { account } = useAppwrite();
+
+  const logout = async () => {
+    try {
+      await account.deleteSession("current");
+      router.push(Routes.home);
+    } catch (err) {
+      console.error(err);
+      alert("logout failed");
+    }
+  };
   return (
     <>
       {/* The header meta tags */}
@@ -36,11 +50,11 @@ const Layout = ({ children }: any) => {
         <title>ReelWatch</title>
       </Head>
       {/* The header section */}
-      <header className='body-font text-sky-600'>
-        <div className='w-screen flex flex-col flex-wrap items-center p-8 bg-header-image bg-cover bg-[center_20%] bg-blend-multiply opacity-70 md:flex-row'>
+      <header className='body-font w-screen text-sky-600'>
+        <div className='flex w-screen flex-col flex-wrap items-center bg-header-image bg-cover bg-[center_20%] p-8 opacity-70 bg-blend-multiply md:flex-row'>
           {/* The application logo */}
-          <Link href='/'>
-            <div className='flex flex-row max-w-xs'>
+          <Link href={Routes.home}>
+            <div className='flex max-w-xs flex-row'>
               <Image
                 src={reelLogo}
                 alt={"logo"}
@@ -49,8 +63,8 @@ const Layout = ({ children }: any) => {
                 className='mr-2'
               />
               {/* The branding text which consists of the words 'Reel' and 'Watch' */}
-              <div className='flex justify-center items-end lg:border-l-black'>
-                <p className='title-font flex justify-center cursor-pointer items-center text-2xl font-medium text-white md:mb-0'>
+              <div className='flex items-end justify-center lg:border-l-black'>
+                <p className='title-font flex cursor-pointer items-center justify-center text-2xl font-medium text-white md:mb-0'>
                   Reel
                 </p>
                 <span className='title-font flex cursor-pointer items-end  text-xl font-medium text-sky-600'>
@@ -60,14 +74,15 @@ const Layout = ({ children }: any) => {
             </div>
           </Link>
           {/* The navigation menu */}
-          <nav className='flex flex-wrap items-center justify-center text-base md:mr-auto md:ml-4 md:border-l md:border-gray-400 md:py-1 md:pl-4'>
+          <nav className='flex flex-wrap items-center justify-center text-base md:ml-4 md:mr-auto md:border-l md:border-gray-400 md:py-1 md:pl-4'>
             <span className='mr-5 hover:text-sky-900'>
-              <Link href='/search'>Find Movies</Link>
+              <Link href={Routes.search}>Find Movies</Link>
             </span>
             <span className='mr-5 hover:text-sky-900'>
-              <Link href='/'>My Watchlist</Link>
+              <Link href={Routes.watchList}>My Watchlist</Link>
             </span>
           </nav>
+          <button onClick={logout}>logout</button>
         </div>
       </header>
       {/* The container for child components */}
