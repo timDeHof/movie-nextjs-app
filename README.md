@@ -74,7 +74,7 @@ Give a ⭐️ if this project helped you!
 ## 📝 License
 
 Copyright © 2023 [Tim DeHof](https://github.com/timDeHof).<br /> This project is
-[MIT](https://github.com/timDeHof/movie-nextjs-app/blob/master/LICENSE)
+[MIT](https://github.com/timDeHof/movie-nextjs-app/blob/main/LICENSE)
 licensed.
 
 ---
