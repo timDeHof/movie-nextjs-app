@@ -29,7 +29,7 @@ const Movie = (props: { movie: any }) => {
   return (
     <>
       <Layout>
-        <div className='flex flex-col space-y-8 items-center lg:items-start lg:flex-row lg:space-x-8 lg:space-y-0'>
+        <div className='flex h-screen flex-col items-center space-y-8 lg:flex-row lg:items-start lg:space-x-8 lg:space-y-0'>
           <Image
             src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
             alt={movie.title}
@@ -38,12 +38,12 @@ const Movie = (props: { movie: any }) => {
             className='w-2/3 rounded-md lg:w-1/4'
           />
           <div className='flex flex-col justify-items-start space-y-12'>
-            <div className='flex flex-col  items-center justify-between space-y-2 lg:space-y-4 lg:items-start'>
-              <h1 className='text-2xl font-bold text-center lg:text-left'>
+            <div className='flex flex-col  items-center justify-between space-y-2 lg:items-start lg:space-y-4'>
+              <h1 className='text-center text-2xl font-bold lg:text-left'>
                 {" "}
                 {movie.title}{" "}
               </h1>
-              <div className='flex flex-shrink-1 items-center  pr-2 text-sm space-x-2'>
+              <div className='flex-shrink-1 flex items-center  space-x-2 pr-2 text-sm'>
                 <div className='rounded bg-green-200 px-2 py-1 text-green-700'>
                   <p> {movie.status} </p>
                 </div>
@@ -51,7 +51,7 @@ const Movie = (props: { movie: any }) => {
                   return (
                     <div
                       key={genre.name}
-                      className='rounded bg-green-200 px-2 py-1 text-green-700 whitespace-nowrap'>
+                      className='whitespace-nowrap rounded bg-green-200 px-2 py-1 text-green-700'>
                       <p> {genre.name} </p>
                     </div>
                   );
@@ -65,7 +65,7 @@ const Movie = (props: { movie: any }) => {
               <a
                 href={movie.homepage}
                 target='_blank'
-                className='flex items-center space-x-2   bg-black p-2 pl-5 pr-5 text-lg text-white '>
+                className='flex items-center space-x-2 rounded-lg bg-black p-2 pl-5 pr-5 text-lg text-white '>
                 <svg
                   className='h-6 w-6'
                   fill='currentColor'

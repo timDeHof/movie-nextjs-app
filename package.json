@@ -1,12 +1,28 @@
 {
-  "name": "movie-nextjs-appwrite",
+  "name": "Reelwatch",
   "version": "0.1.0",
+  "description": "A web app that users can search for their favorite movies and add them to their personal watchlist",
+  "author": "Tim DeHof",
+  "license": "MIT",
+  "homepage": "https://reelwatch.vercel.app/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/timDeHof/movie-nextjs-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/timDeHof/movie-nextjs-app/issues"
+  },
+  "engines": {
+    "npm": ">=5.5.0",
+    "node": ">=9.3.0"
+  },
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prettier": "prettier --check ."
   },
   "dependencies": {
     "@types/node": "20.2.1",
@@ -28,7 +44,11 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
+    "@appnest/readme": "^1.2.7",
     "@tailwindcss/aspect-ratio": "^0.4.2",
-    "@types/uuid": "^9.0.1"
+    "@types/uuid": "^9.0.1",
+    "eslint-config-prettier": "^8.8.0",
+    "prettier": "^2.8.8",
+    "prettier-plugin-tailwindcss": "^0.3.0"
   }
 }

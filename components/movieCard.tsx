@@ -39,7 +39,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
   return (
     <div className='cursor-pointer'>
       <Link href={`/movie/${movie.id}`}>
-        <div className='max-w-xs rounded overflow-hidden shadow-lg my-2 mx-2'>
+        <div className='mx-2 my-2 max-w-xs overflow-hidden rounded shadow-lg'>
           <Image
             className='w-full'
             src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
@@ -48,11 +48,11 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
             height={460}
           />
           <div className='px-6 py-4'>
-            <div className='font-bold text-xl mb-2'>{movie.title}</div>
-            <p className='text-gray-700 text-base truncate'>{movie.overview}</p>
+            <div className='mb-2 text-xl font-bold'>{movie.title}</div>
+            <p className='truncate text-base text-gray-700'>{movie.overview}</p>
           </div>
-          <div className='px-6 pt-4 pb-2 flex justify-between'>
-            <span className='inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2'>
+          <div className='flex justify-between px-6 pb-2 pt-4'>
+            <span className='mr-2 inline-block rounded-full bg-gray-200 px-3 py-1 text-sm font-semibold text-gray-700'>
               {movie.release_date}
             </span>
             <WatchButton onClick={handleAddMovie} text='watchlist' />
