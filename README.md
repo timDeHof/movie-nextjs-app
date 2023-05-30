@@ -42,6 +42,17 @@ npm install
 file contains the required environment variables that are injected by Next.js
 via the `dotenv` package.
 
+### 3. Run Development Server
+
+Finally, run the development server:
+
+```bash
+npm run dev
+```
+
+Now you can open [http://localhost:3000](http://localhost:3000) with your
+browser to see the application.
+
 ## Author
 
 👤 **Tim DeHof**
