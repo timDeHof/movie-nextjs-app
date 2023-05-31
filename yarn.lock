@@ -502,35 +502,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"Reelwatch@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "Reelwatch@workspace:."
-  dependencies:
-    "@appnest/readme": ^1.2.7
-    "@tailwindcss/aspect-ratio": ^0.4.2
-    "@types/node": 20.2.1
-    "@types/react": 18.2.6
-    "@types/react-dom": 18.2.4
-    "@types/uuid": ^9.0.1
-    appwrite: ^11.0.0
-    autoprefixer: 10.4.14
-    axios: ^1.4.0
-    eslint: 8.41.0
-    eslint-config-next: 13.4.3
-    eslint-config-prettier: ^8.8.0
-    localforage: ^1.10.0
-    next: 13.4.3
-    postcss: 8.4.23
-    prettier: ^2.8.8
-    prettier-plugin-tailwindcss: ^0.3.0
-    react: 18.2.0
-    react-dom: 18.2.0
-    tailwindcss: 3.3.2
-    typescript: 5.0.4
-    uuid: ^9.0.0
-  languageName: unknown
-  linkType: soft
-
 "abbrev@npm:^1.0.0":
   version: 1.1.1
   resolution: "abbrev@npm:1.1.1"
@@ -3257,6 +3228,35 @@ __metadata:
   checksum: a96865108c6c3b1b8e1d5e9f11843de1e077e57737602de1b82030815f311be11f96f09cce59bd5b903d0b29834733e5313f9301e3ed6d6f6fba2eae0df4298f
   languageName: node
   linkType: hard
+
+"movie-nextjs-appwrite@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "movie-nextjs-appwrite@workspace:."
+  dependencies:
+    "@appnest/readme": ^1.2.7
+    "@tailwindcss/aspect-ratio": ^0.4.2
+    "@types/node": 20.2.1
+    "@types/react": 18.2.6
+    "@types/react-dom": 18.2.4
+    "@types/uuid": ^9.0.1
+    appwrite: ^11.0.0
+    autoprefixer: 10.4.14
+    axios: ^1.4.0
+    eslint: 8.41.0
+    eslint-config-next: 13.4.3
+    eslint-config-prettier: ^8.8.0
+    localforage: ^1.10.0
+    next: 13.4.3
+    postcss: 8.4.23
+    prettier: ^2.8.8
+    prettier-plugin-tailwindcss: ^0.3.0
+    react: 18.2.0
+    react-dom: 18.2.0
+    tailwindcss: 3.3.2
+    typescript: 5.0.4
+    uuid: ^9.0.0
+  languageName: unknown
+  linkType: soft
 
 "ms@npm:2.1.2, ms@npm:^2.1.1":
   version: 2.1.2
