@@ -1,11 +1,11 @@
 import type { NextPage } from "next";
-import Layout from "../components/layout";
-import Pagination from "@Components/Pagination";
+import Layout from "@components/layout";
+import Pagination from "@components/Pagination";
 import React, { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { RemoveButton } from "@Components/button";
-import { MovieType } from "@/typings/movie.types";
+import { RemoveButton } from "@components/button";
+import { MovieType } from "@typings/movie.types";
 import noMoviesImage from "../assets/no-movies-Icon.png";
 
 const Watchlist: NextPage = React.memo(() => {

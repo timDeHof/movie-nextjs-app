@@ -1,8 +1,8 @@
 import axios from "axios";
 import Image from "next/image";
-import Layout from "@Components/layout";
+import Layout from "@components/layout";
 import { useRouter } from "next/router";
-import Button from "@Components/button";
+import Button from "@components/button";
 const Movie = (props: { movie: any }) => {
   const router = useRouter();
   const { movie } = props;

@@ -3,30 +3,31 @@ import { Inter } from "next/font/google";
 
 // Initializing the 'Inter' font object with a subset of "latin"
 const inter = Inter({ subsets: ["latin"] });
-
+import React from "react";
 // Importing necessary components from the 'next/link', 'next/head', and 'next/image' libraries.
 import Link from "next/link";
 import Head from "next/head";
 import Image from "next/image";
 import { Routes } from "../config/routes";
-import { useRouter } from "next/router";
-import { useAppwrite } from "../providers/appwriteProvider";
+import { NextRouter, useRouter } from "next/router";
+import { useAppwrite } from "@providers/appwriteProvider";
 // Importing an SVG logo file as a variable named 'reelLogo'
 import reelLogo from "../assets/film-reel-svgrepo-com.svg";
+import { Account } from "appwrite";
 
+const logout = async (account: Account, router: NextRouter | string[]) => {
+  try {
+    await account.deleteSession("current");
+    router.push(Routes.home);
+  } catch (err) {
+    console.error(err);
+    alert("logout failed");
+  }
+};
 const Layout = ({ children }: any) => {
   const router = useRouter();
   const { account } = useAppwrite();
 
-  const logout = async () => {
-    try {
-      await account.deleteSession("current");
-      router.push(Routes.home);
-    } catch (err) {
-      console.error(err);
-      alert("logout failed");
-    }
-  };
   return (
     <>
       {/* The header meta tags */}
@@ -82,7 +83,7 @@ const Layout = ({ children }: any) => {
               <Link href={Routes.watchList}>My Watchlist</Link>
             </span>
           </nav>
-          <button onClick={logout}>logout</button>
+          <button onClick={() => logout(account, router)}>logout</button>
         </div>
       </header>
       {/* The container for child components */}

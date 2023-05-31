@@ -1,6 +1,6 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
-import { account } from "@/lib/appwrite";
+import { useAppwrite } from "../providers/appwriteProvider";
 import { v4 as uuidv4 } from "uuid";
 import { Routes } from "../config/routes";
 
@@ -11,7 +11,7 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [showPasswords, setShowPasswords] = useState(false);
-
+  const { account } = useAppwrite();
   const router = useRouter();
 
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
