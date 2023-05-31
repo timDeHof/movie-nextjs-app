@@ -1,12 +1,12 @@
 import type { NextPage } from "next";
-import Layout from "@components/layout";
-import Pagination from "@components/Pagination";
+import Layout from "src/components/layout";
+import Pagination from "src/components/Pagination";
 import React, { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { RemoveButton } from "@components/button";
+import { RemoveButton } from "src/components/button";
 import { MovieType } from "@typings/movie.types";
-import noMoviesImage from "../assets/no-movies-Icon.png";
+import noMoviesImage from "../../assets/no-movies-Icon.png";
 
 const Watchlist: NextPage = React.memo(() => {
   // Declare necessary state variables for handling offsets and movies.
@@ -85,12 +85,13 @@ const Watchlist: NextPage = React.memo(() => {
                     className='cursor-pointer rounded-md bg-white drop-shadow-xl'
                     key={movie.$id}>
                     <div className='group relative'>
-                      <Link href={`/movie/${movie.movie_id}`}>
+                      <Link rel='preconnect' href={`/movie/${movie.movie_id}`}>
                         <div className='lg:aspect-1 aspect-h-1 aspect-w-1 min-h-fit w-full overflow-clip rounded-t-md bg-gray-200 group-hover:opacity-75 lg:h-96'>
                           <Image
                             src={movie.thumbnail_image}
                             alt={movie.title}
                             fill
+                            sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
                           />
                         </div>
                       </Link>

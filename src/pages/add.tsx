@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
-import Layout from "@components/layout";
+import Layout from "src/components/layout";
 
 const Add = () => {
   const [id, setImdbId] = useState("");

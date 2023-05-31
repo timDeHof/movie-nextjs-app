@@ -1,8 +1,8 @@
 import axios from "axios";
 import Image from "next/image";
-import Layout from "@components/layout";
+import Layout from "src/components/layout";
 import { useRouter } from "next/router";
-import Button from "@components/button";
+import Button from "src/components/button";
 const Movie = (props: { movie: any }) => {
   const router = useRouter();
   const { movie } = props;
@@ -63,6 +63,7 @@ const Movie = (props: { movie: any }) => {
             </div>
             <div className='flex flex-col space-y-2 md:flex-row md:space-x-2 md:space-y-0'>
               <a
+                rel='preconnect'
                 href={movie.homepage}
                 target='_blank'
                 className='flex items-center space-x-2 rounded-lg bg-black p-2 pl-5 pr-5 text-lg text-white '>

@@ -23,9 +23,9 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["/*"],
-      "@components/*": ["components/*"],
+      "@components/*": ["src/components/*"],
       "@typings/*": ["typings/*"],
-      "@providers/*": ["providers/*"]
+      "@providers/*": ["src/providers/*"]
     }
   },
   "include": [
@@ -33,10 +33,10 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "pages/seed.js",
+    "src/pages/seed.js",
     "styles/globals.css",
-    "components/layout.tsx",
-    "components/Pagination.tsx"
+    "src/components/layout.tsx",
+    "src/components/Pagination.tsx"
   ],
   "exclude": ["node_modules"]
 }

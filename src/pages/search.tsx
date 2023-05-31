@@ -1,9 +1,9 @@
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import Layout from "@components/layout";
-import MovieCard from "@components/movieCard";
-import { SearchButton } from "@components/button";
+import Layout from "src/components/layout";
+import MovieCard from "src/components/movieCard";
+import { SearchButton } from "src/components/button";
 
 const Search: NextPage = () => {
   const [query, setQuery] = useState("");

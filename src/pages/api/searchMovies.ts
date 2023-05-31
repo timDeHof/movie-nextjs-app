@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
-import { client, databases } from "../../lib/appwrite";
+import { client, databases } from "../../../lib/appwrite";
 import { v4 as uuidv4 } from "uuid";
 
 type Data = {

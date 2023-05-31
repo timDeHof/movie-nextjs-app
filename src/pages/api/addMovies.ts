@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { databases } from "../../lib/appwrite";
+import { databases } from "../../../lib/appwrite";
 import { v4 as uuidv4 } from "uuid";
 import { Query } from "appwrite";
 type Data = {

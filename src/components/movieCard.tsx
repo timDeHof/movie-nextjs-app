@@ -38,7 +38,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
 
   return (
     <div className='cursor-pointer'>
-      <Link href={`/movie/${movie.id}`}>
+      <Link rel='preconnect' href={`/movie/${movie.id}`}>
         <div className='mx-2 my-2 max-w-xs overflow-hidden rounded shadow-lg'>
           <Image
             className='w-full'
