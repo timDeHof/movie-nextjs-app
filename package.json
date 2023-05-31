@@ -1,5 +1,5 @@
 {
-  "name": "Reelwatch",
+  "name": "movie-nextjs-appwrite",
   "version": "0.1.0",
   "description": "A web app that users can search for their favorite movies and add them to their personal watchlist",
   "author": "Tim DeHof",
@@ -35,7 +35,6 @@
     "eslint-config-next": "13.4.3",
     "localforage": "^1.10.0",
     "next": "13.4.3",
-    "node-appwrite": "^9.0.0",
     "postcss": "8.4.23",
     "react": "18.2.0",
     "react-dom": "18.2.0",
