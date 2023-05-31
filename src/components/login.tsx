@@ -1,22 +1,15 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
-import { useAppwrite } from "../providers/appwriteProvider";
-import { v4 as uuidv4 } from "uuid";
 import { Routes } from "../config/routes";
+import { useAppwrite } from "src/providers/appwriteProvider";
 
-const Register = () => {
-  const [name, setName] = useState("");
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
-  const [showPasswords, setShowPasswords] = useState(false);
   const { account } = useAppwrite();
   const router = useRouter();
-
-  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setName(event.target.value);
-  };
 
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
@@ -25,61 +18,35 @@ const Register = () => {
   const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
   };
-  const handleConfirmPasswordChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    setConfirmPassword(event.target.value);
-  };
-  const handleShowPasswordsClick = () => {
-    setShowPasswords(!showPasswords);
+
+  const handleShowPasswordClick = () => {
+    setShowPassword(!showPassword);
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (password !== confirmPassword) {
-      setError("Passwords do not match");
-      return;
-    }
-
     try {
-      const user = await account.create(uuidv4(), email, password, name);
-      router.push(Routes.search);
+      const session = await account.createEmailSession(email, password);
+      console.log(session);
+      router.push(Routes.watchList);
     } catch (error) {
-      setError("Unable to create account");
+      setError("Invalid email or password");
     }
   };
 
   return (
     <div className='w-full rounded bg-white p-10 shadow md:w-1/2 lg:w-1/3'>
-      <div>
-        <h2
-          tabIndex={0}
-          role='heading'
-          aria-label='Create your account'
-          className='text-center text-2xl font-extrabold leading-6 text-gray-800'>
-          Create an account
-        </h2>
-      </div>
+      <h2
+        tabIndex={0}
+        role='heading'
+        aria-label='Login to your account'
+        className='text-center text-2xl font-extrabold leading-6 text-gray-800'>
+        Login to your account
+      </h2>
       <form className='mt-8 space-y-6' onSubmit={handleSubmit}>
         <input type='hidden' name='remember' value='true' />
-        <div className='space-y-4'>
-          <div>
-            <label htmlFor='name' className='sr-only'>
-              Name
-            </label>
-            <input
-              id='name'
-              name='name'
-              type='text'
-              autoComplete='new-password'
-              required
-              className='relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm'
-              placeholder='Name'
-              value={name}
-              onChange={handleNameChange}
-            />
-          </div>
+        <div className='space-y-4 rounded-md shadow-sm'>
           <div>
             <label htmlFor='email-address' className='sr-only'>
               Email address
@@ -104,10 +71,10 @@ const Register = () => {
               <input
                 id='password'
                 name='password'
-                type={showPasswords ? "text" : "password"}
+                type={showPassword ? "text" : "password"}
                 autoComplete='new-password'
                 required
-                className='relative  block w-full appearance-none text-gray-900 placeholder-gray-500 focus:outline-none'
+                className='relative block w-full appearance-none text-gray-900 placeholder-gray-500 focus:outline-none'
                 placeholder='Password'
                 value={password}
                 onChange={handlePasswordChange}
@@ -115,48 +82,8 @@ const Register = () => {
               <button
                 type='button'
                 className='bg-transparent'
-                onClick={handleShowPasswordsClick}>
-                {showPasswords ? (
-                  <svg
-                    xmlns='http://www.w3.org/2000/svg'
-                    height='20'
-                    viewBox='0 -960 960 960'
-                    width='20'>
-                    <path d='M480.118-330Q551-330 600.5-379.618q49.5-49.617 49.5-120.5Q650-571 600.382-620.5q-49.617-49.5-120.5-49.5Q409-670 359.5-620.382q-49.5 49.617-49.5 120.5Q310-429 359.618-379.5q49.617 49.5 120.5 49.5Zm-.353-58Q433-388 400.5-420.735q-32.5-32.736-32.5-79.5Q368-547 400.735-579.5q32.736-32.5 79.5-32.5Q527-612 559.5-579.265q32.5 32.736 32.5 79.5Q592-453 559.265-420.5q-32.736 32.5-79.5 32.5ZM480-200q-146 0-264-83T40-500q58-134 176-217t264-83q146 0 264 83t176 217q-58 134-176 217t-264 83Zm0-300Zm-.169 240Q601-260 702.5-325.5 804-391 857-500q-53-109-154.331-174.5-101.332-65.5-222.5-65.5Q359-740 257.5-674.5 156-609 102-500q54 109 155.331 174.5 101.332 65.5 222.5 65.5Z' />
-                  </svg>
-                ) : (
-                  <svg
-                    xmlns='http://www.w3.org/2000/svg'
-                    height='20'
-                    viewBox='0 -960 960 960'
-                    width='20'>
-                    <path d='m629-419-44-44q26-71-27-118t-115-24l-44-44q17-11 38-16t43-5q71 0 120.5 49.5T650-500q0 22-5.5 43.5T629-419Zm129 129-40-40q49-36 85.5-80.5T857-500q-50-111-150-175.5T490-740q-42 0-86 8t-69 19l-46-47q35-16 89.5-28T485-800q143 0 261.5 81.5T920-500q-26 64-67 117t-95 93Zm58 226L648-229q-35 14-79 21.5t-89 7.5q-146 0-265-81.5T40-500q20-52 55.5-101.5T182-696L56-822l42-43 757 757-39 44ZM223-654q-37 27-71.5 71T102-500q51 111 153.5 175.5T488-260q33 0 65-4t48-12l-64-64q-11 5-27 7.5t-30 2.5q-70 0-120-49t-50-121q0-15 2.5-30t7.5-27l-97-97Zm305 142Zm-116 58Z' />
-                  </svg>
-                )}
-              </button>
-            </div>
-          </div>
-          <div>
-            <label htmlFor='confirmPassword' className='sr-only'>
-              Confirm Password
-            </label>
-            <div className='relative flex rounded-md border border-gray-300 px-3 py-2 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm'>
-              <input
-                id='confirmPassword'
-                name='confirmPassword'
-                type={showPasswords ? "password" : "text"}
-                autoComplete='new-password'
-                required
-                className='relative block w-full appearance-none text-gray-900 placeholder-gray-500 focus:outline-none'
-                placeholder='Confirm Password'
-                value={confirmPassword}
-                onChange={handleConfirmPasswordChange}
-              />
-              <button
-                type='button'
-                className='bg-transparent'
-                onClick={handleShowPasswordsClick}>
-                {showPasswords ? (
+                onClick={handleShowPasswordClick}>
+                {showPassword ? (
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
                     height='20'
@@ -177,7 +104,6 @@ const Register = () => {
             </div>
           </div>
         </div>
-
         {error && (
           <div className='rounded-md bg-red-50 p-4'>
             <div className='flex'>
@@ -194,7 +120,9 @@ const Register = () => {
                 </svg>
               </div>
               <div className='ml-3'>
-                <h3 className='text-sm font-medium text-red-800'>{error}</h3>
+                <h3 className='text-sm font-medium text-red-800'>
+                  Invalid email or password
+                </h3>
               </div>
             </div>
           </div>
@@ -217,7 +145,7 @@ const Register = () => {
                 />
               </svg>
             </span>
-            Create account
+            Sign in
           </button>
         </div>
       </form>
@@ -225,4 +153,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Login;

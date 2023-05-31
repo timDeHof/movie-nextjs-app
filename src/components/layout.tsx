@@ -10,9 +10,9 @@ import Head from "next/head";
 import Image from "next/image";
 import { Routes } from "../config/routes";
 import { NextRouter, useRouter } from "next/router";
-import { useAppwrite } from "@providers/appwriteProvider";
+import { useAppwrite } from "src/providers/appwriteProvider";
 // Importing an SVG logo file as a variable named 'reelLogo'
-import reelLogo from "../assets/film-reel-svgrepo-com.svg";
+import reelLogo from "../../assets/film-reel-svgrepo-com.svg";
 import { Account } from "appwrite";
 
 const logout = async (account: Account, router: NextRouter | string[]) => {
@@ -51,24 +51,18 @@ const Layout = ({ children }: any) => {
         <title>ReelWatch</title>
       </Head>
       {/* The header section */}
-      <header className='body-font w-screen text-sky-600'>
+      <header className='body-font w-screen text-sky-800'>
         <div className='flex w-screen flex-col flex-wrap items-center bg-header-image bg-cover bg-[center_20%] p-8 opacity-70 bg-blend-multiply md:flex-row'>
           {/* The application logo */}
-          <Link href={Routes.home}>
-            <div className='flex max-w-xs flex-row'>
-              <Image
-                src={reelLogo}
-                alt={"logo"}
-                width={32}
-                height={32}
-                className='mr-2'
-              />
+          <Link rel='preconnect' href={Routes.home}>
+            <div className='flex max-w-xs flex-row space-x-2'>
+              <Image src={reelLogo} alt={"logo"} width={32} height={32} />
               {/* The branding text which consists of the words 'Reel' and 'Watch' */}
               <div className='flex items-end justify-center lg:border-l-black'>
                 <p className='title-font flex cursor-pointer items-center justify-center text-2xl font-medium text-white md:mb-0'>
                   Reel
                 </p>
-                <span className='title-font flex cursor-pointer items-end  text-xl font-medium text-sky-600'>
+                <span className='title-font flex cursor-pointer items-end  text-xl font-medium text-sky-800'>
                   Watch
                 </span>
               </div>
@@ -80,7 +74,9 @@ const Layout = ({ children }: any) => {
               <Link href={Routes.search}>Find Movies</Link>
             </span>
             <span className='mr-5 hover:text-sky-900'>
-              <Link href={Routes.watchList}>My Watchlist</Link>
+              <Link rel='preconnect' href={Routes.watchList}>
+                My Watchlist
+              </Link>
             </span>
           </nav>
           <button onClick={() => logout(account, router)}>logout</button>

@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next/types";
-import { databases } from "../../lib/appwrite";
+import { databases } from "../../../lib/appwrite";
 
 export default async function handler(
   req: NextApiRequest,
@@ -8,13 +8,12 @@ export default async function handler(
   try {
     const documentID = req.query.documentID;
 
-    await databases.deleteDocument(
+    let response = await databases.updateDocument(
       process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID as string,
       process.env.NEXT_PUBLIC_APPWRITE_COLLECTION_ID as string,
       documentID as string,
+      { watched: true },
     );
-    res.status(200).json({ data: "success" });
-  } catch (e) {
-    res.status(500).json({ data: e });
-  }
+    res.status(200).json({ data: response });
+  } catch (error) {}
 }

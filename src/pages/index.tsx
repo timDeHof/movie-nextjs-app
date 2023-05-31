@@ -1,7 +1,7 @@
 // Import the required modules that are needed for displaying the movie list and pagination.
-import Layout from "@components/layout";
-import Login from "@components/login";
-import Register from "@components/register";
+import Layout from "src/components/layout";
+import Login from "src/components/login";
+import Register from "src/components/register";
 import React from "react";
 // Define the Home component as a functional React component with NextJS's 'NextPage' type.
 const Home = () => {
