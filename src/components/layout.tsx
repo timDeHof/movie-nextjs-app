@@ -15,19 +15,20 @@ import { useAppwrite } from "src/providers/appwriteProvider";
 import reelLogo from "../../assets/film-reel-svgrepo-com.svg";
 import { Account } from "appwrite";
 
-const logout = async (account: Account, router: NextRouter | string[]) => {
-  try {
-    await account.deleteSession("current");
-    router.push(Routes.home);
-  } catch (err) {
-    console.error(err);
-    alert("logout failed");
-  }
-};
 const Layout = ({ children }: any) => {
   const router = useRouter();
-  const { account } = useAppwrite();
+  const { account, isLoggedIn, setLoggedIn } = useAppwrite();
 
+  const logout = async (account: Account, router: NextRouter | string[]) => {
+    try {
+      await account.deleteSession("current");
+      setLoggedIn(false);
+      router.push(Routes.home);
+    } catch (err) {
+      console.error(err);
+      alert("logout failed");
+    }
+  };
   return (
     <>
       {/* The header meta tags */}
@@ -79,7 +80,9 @@ const Layout = ({ children }: any) => {
               </Link>
             </span>
           </nav>
-          <button onClick={() => logout(account, router)}>logout</button>
+          {isLoggedIn && (
+            <button onClick={() => logout(account, router)}>logout</button>
+          )}
         </div>
       </header>
       {/* The container for child components */}

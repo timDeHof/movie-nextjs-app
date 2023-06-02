@@ -8,7 +8,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
-  const { account } = useAppwrite();
+  const { account, setLoggedIn } = useAppwrite();
   const router = useRouter();
 
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,13 +30,14 @@ const Login = () => {
       const session = await account.createEmailSession(email, password);
       console.log(session);
       router.push(Routes.watchList);
+      setLoggedIn(true);
     } catch (error) {
       setError("Invalid email or password");
     }
   };
 
   return (
-    <div className='w-full rounded bg-white p-10 shadow md:w-1/2 lg:w-1/3'>
+    <div className='w-full rounded bg-white p-6 shadow md:w-1/2 lg:w-1/3'>
       <h2
         tabIndex={0}
         role='heading'
