@@ -11,7 +11,7 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [showPasswords, setShowPasswords] = useState(false);
-  const { account } = useAppwrite();
+  const { account, setLoggedIn } = useAppwrite();
   const router = useRouter();
 
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,6 +44,7 @@ const Register = () => {
 
     try {
       const user = await account.create(uuidv4(), email, password, name);
+      setLoggedIn(true);
       router.push(Routes.search);
     } catch (error) {
       setError("Unable to create account");
@@ -51,7 +52,7 @@ const Register = () => {
   };
 
   return (
-    <div className='w-full rounded bg-white p-10 shadow md:w-1/2 lg:w-1/3'>
+    <div className='w-full rounded bg-white p-6 shadow md:w-1/2 lg:w-1/3'>
       <div>
         <h2
           tabIndex={0}

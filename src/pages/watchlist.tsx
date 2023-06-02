@@ -7,6 +7,7 @@ import Image from "next/image";
 import { RemoveButton } from "src/components/button";
 import { MovieType } from "@typings/movie.types";
 import noMoviesImage from "../../assets/no-movies-Icon.png";
+import { useAppwrite } from "src/providers/appwriteProvider";
 
 const Watchlist: NextPage = React.memo(() => {
   // Declare necessary state variables for handling offsets and movies.
@@ -14,6 +15,7 @@ const Watchlist: NextPage = React.memo(() => {
   const [pageLimit] = useState(25);
   const [totalMovies, setTotalMovies] = useState(0);
   const [movies, setMovies] = useState([]);
+  const { isLoggedIn } = useAppwrite();
   // Define an asynchronous function to fetch the movies data using an api endpoint.
   const fetchMovies = async (limit: number, offset: number) => {
     const response = await fetch(
@@ -58,6 +60,13 @@ const Watchlist: NextPage = React.memo(() => {
       });
     }
   }, [offset, pageLimit]);
+  if (!isLoggedIn) {
+    return (
+      <Layout>
+        <p>Please login to view the watchlist </p>
+      </Layout>
+    );
+  }
   // Render JSX based on conditional logic to display when there are no movies in the Watchlist.
   return (
     <Layout>
