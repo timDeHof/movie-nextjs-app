@@ -7,7 +7,10 @@ type Data = {
   data?: string;
   id: number;
 };
-export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<Data>,
+) {
   try {
     const movieID = req.query.movieID;
 
@@ -62,4 +65,4 @@ export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
       res.status(500).json({ id: 0, data: "An unknown error occurred" });
     }
   }
-};
+}

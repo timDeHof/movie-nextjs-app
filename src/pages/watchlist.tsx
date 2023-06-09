@@ -87,8 +87,10 @@ const Watchlist: NextPage = React.memo(() => {
       ) : (
         <>
           {/* Render JSX to display the list of movies */}
-          <section className='body-font pb-4 text-gray-600'>
-            <div className='mt-6 grid grid-cols-1 gap-16 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-16'>
+          <section className='pb-4 text-gray-600'>
+            <div
+              className='mt-6 grid grid-cols-1 gap-16 sm:grid-cols-2
+            lg:grid-cols-4 xl:gap-x-16'>
               {movies.map((movie: MovieType) => {
                 return (
                   <div
@@ -96,7 +98,10 @@ const Watchlist: NextPage = React.memo(() => {
                     key={movie.$id}>
                     <div className='group relative'>
                       <Link rel='preconnect' href={`/movie/${movie.movie_id}`}>
-                        <div className='lg:aspect-1 aspect-h-1 aspect-w-1 min-h-fit w-full overflow-clip rounded-t-md bg-gray-200 group-hover:opacity-75 lg:h-96'>
+                        <div
+                          className='lg:aspect-1 aspect-h-1 aspect-w-1
+                        min-h-fit w-full text-clip rounded-t-md bg-gray-200
+                        group-hover:opacity-75 lg:h-96'>
                           <Image
                             src={IMG_URL + movie.thumbnail_image}
                             alt={movie.title}

@@ -33,6 +33,7 @@ export const AppwriteProvider: React.FC<AppwriteProviderProps> = ({
   const [account] = useState(new Account(client));
   const [databases] = useState(new Databases(client));
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   useEffect(() => {
     // Check if session token exists in cookie or local storage
     const sessionToken =

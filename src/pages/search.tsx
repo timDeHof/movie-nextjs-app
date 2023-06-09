@@ -5,7 +5,6 @@ import Layout from "src/components/layout";
 import MovieCard from "src/components/movieCard";
 import { SearchButton } from "src/components/button";
 import { useAppwrite } from "@providers/appwriteProvider";
-import debounce from "lodash/debounce";
 
 const Search: NextPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -26,12 +25,9 @@ const Search: NextPage = () => {
     }
   };
 
-  const debouncedOnChangeSearch = debounce((value: string) => {
+  const onChangeSearch = (value: string) => {
     setSearchTerm(value);
     setCurrentPage(1);
-  }, 500);
-  const onChangeSearch = (value: string) => {
-    debouncedOnChangeSearch(value);
   };
   useEffect(() => {
     const fetchData = async () => {

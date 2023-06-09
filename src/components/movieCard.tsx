@@ -39,15 +39,15 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
   return (
     <div className='flex h-full max-h-[675px] flex-col'>
       <Link className='flex-1' rel='preconnect' href={`/movie/${movie.id}`}>
-        <div className='grid-row-2 grid h-full max-w-xs grid-cols-1 overflow-hidden rounded shadow-lg'>
+        <div className='grid max-w-xs grid-cols-1 overflow-hidden rounded shadow-lg'>
           <Image
             src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
             alt={movie.title}
-            width={320}
+            width={500}
             height={460}
           />
           <div className='col-end-auto space-y-3 p-2'>
-            <p className='text-md font-bold'>{movie.title}</p>
+            <p className='text-sm font-bold'>{movie.title}</p>
             <p className='line-clamp-3 text-xs text-gray-700'>
               {movie.overview.split(". ", 1) + "."}
             </p>
