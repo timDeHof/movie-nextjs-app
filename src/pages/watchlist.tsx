@@ -8,6 +8,7 @@ import { RemoveButton } from "src/components/button";
 import { MovieType } from "@typings/movie.types";
 import noMoviesImage from "../../assets/no-movies-Icon.png";
 import { useAppwrite } from "src/providers/appwriteProvider";
+import { IMG_URL } from "src/config/routes";
 
 const Watchlist: NextPage = React.memo(() => {
   // Declare necessary state variables for handling offsets and movies.
@@ -97,7 +98,7 @@ const Watchlist: NextPage = React.memo(() => {
                       <Link rel='preconnect' href={`/movie/${movie.movie_id}`}>
                         <div className='lg:aspect-1 aspect-h-1 aspect-w-1 min-h-fit w-full overflow-clip rounded-t-md bg-gray-200 group-hover:opacity-75 lg:h-96'>
                           <Image
-                            src={movie.thumbnail_image}
+                            src={IMG_URL + movie.thumbnail_image}
                             alt={movie.title}
                             fill
                             sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'

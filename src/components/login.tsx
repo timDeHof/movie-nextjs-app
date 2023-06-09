@@ -29,9 +29,10 @@ const Login = () => {
     try {
       const session = await account.createEmailSession(email, password);
       setLoggedIn(true);
-      console.log(session);
+
+      const getSession = await account.get();
+      console.log("account.get()", getSession);
       const sessionToken = await account.createJWT();
-      console.log(sessionToken);
       localStorage.setItem("sessionToken", sessionToken.jwt);
       router.push(Routes.watchList);
     } catch (error) {

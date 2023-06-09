@@ -2,6 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { databases } from "../../../lib/appwrite";
 import { v4 as uuidv4 } from "uuid";
 import { Query } from "appwrite";
+
 type Data = {
   data?: string;
   id: number;
@@ -38,7 +39,7 @@ export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
           {
             movie_id: id,
             title: item.title,
-            thumbnail_image: `https://image.tmdb.org/t/p/original/${item.poster_path}`,
+            thumbnail_image: item.poster_path,
             popularity: item.popularity,
             release_date: item.release_date,
             vote_average: item.vote_average,
