@@ -15,7 +15,8 @@ export default function Button(props: ButtonProps) {
 export function RemoveButton(props: ButtonProps) {
   return (
     <button
-      className="flex place-content-end bg-transparent text-lg text-gray-700 before:content-[url('../assets/remove.svg')]"
+      className="flex place-content-end bg-transparent text-lg text-gray-700
+      before:content-[url('../assets/remove.svg')]"
       onClick={props.onClick}>
       {props.text}
     </button>
@@ -24,12 +25,14 @@ export function RemoveButton(props: ButtonProps) {
 export function WatchButton(props: ButtonProps) {
   return (
     <button
-      className="flex place-content-end bg-transparent text-lg text-gray-700 before:content-[url('../assets/add.svg')]"
+      className="flex place-content-end bg-transparent text-lg text-gray-700
+      before:content-[url('../assets/add.svg')]"
       onClick={props.onClick}>
       {props.text}
     </button>
   );
 }
+
 export function SearchButton(props: ButtonProps) {
   return (
     <button

@@ -28,9 +28,12 @@ const Login = () => {
 
     try {
       const session = await account.createEmailSession(email, password);
-      console.log(session);
-      router.push(Routes.watchList);
       setLoggedIn(true);
+      console.log(session);
+      const sessionToken = await account.createJWT();
+      console.log(sessionToken);
+      localStorage.setItem("sessionToken", sessionToken.jwt);
+      router.push(Routes.watchList);
     } catch (error) {
       setError("Invalid email or password");
     }

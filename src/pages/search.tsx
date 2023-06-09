@@ -5,6 +5,7 @@ import Layout from "src/components/layout";
 import MovieCard from "src/components/movieCard";
 import { SearchButton } from "src/components/button";
 import { useAppwrite } from "@providers/appwriteProvider";
+import debounce from "lodash/debounce";
 
 const Search: NextPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -21,15 +22,20 @@ const Search: NextPage = () => {
 
   const loadMoreItems = () => {
     if (hasNext) {
-      setCurrentPage((page) => page + 1);
+      setCurrentPage((page) => Math.min(page + 1, counts.totalPages));
     }
   };
-  const onChangeSearch = (value: string) => {
+
+  const debouncedOnChangeSearch = debounce((value: string) => {
     setSearchTerm(value);
     setCurrentPage(1);
+  }, 500);
+  const onChangeSearch = (value: string) => {
+    debouncedOnChangeSearch(value);
   };
   useEffect(() => {
     const fetchData = async () => {
+      console.log(searchTerm);
       try {
         const endpoint =
           searchTerm === ""
@@ -37,10 +43,11 @@ const Search: NextPage = () => {
             : `/api/searchMovies?query=${searchTerm}&currentPage=${currentPage}`;
         const response = await fetch(endpoint);
         const data = await response.json();
-
+        console.log(data);
         setAllMovies((previous) =>
           currentPage === 1 ? data.results : [...previous, ...data.results],
         );
+
         setCounts({
           totalPages: data.totalPages,
           totalResults: data.totalResults,
@@ -58,11 +65,11 @@ const Search: NextPage = () => {
         `/api/searchMovies?query=${searchTerm}&currentPage=${currentPage}`,
       );
       const data = await response.json();
-      console.log(data);
-      setAllMovies(data.data.results);
+      console.log("search data: ", data);
+      setAllMovies(data.results);
       setCounts({
-        totalPages: data.data.totalPages,
-        totalResults: data.data.totalResults,
+        totalPages: data.totalPages,
+        totalResults: data.totalResults,
       });
     } catch (error) {
       console.error(error);
@@ -94,10 +101,11 @@ const Search: NextPage = () => {
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
   return (
     <Layout>
       {isLoggedIn ? (
-        <div className='h-screen'>
+        <div className='h-full'>
           <label className='flex flex-row justify-center'>
             <input
               type='text'
@@ -114,10 +122,15 @@ const Search: NextPage = () => {
             </h1>
             <hr className='border-black text-gray-900'></hr>
           </div>
-          <div className='mt-6 grid grid-cols-1 gap-16 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-16'>
-            {allMovies.map((movie, id) => (
-              <MovieCard key={id} movie={movie} />
-            ))}
+          <div
+            className='mt-6 grid grid-cols-1 gap-16 sm:grid-cols-2
+          lg:grid-cols-4 xl:gap-x-16'>
+            {allMovies &&
+              allMovies.map((movie, id) => (
+                <div className='flex' key={id}>
+                  <MovieCard movie={movie} />
+                </div>
+              ))}
           </div>
         </div>
       ) : (
