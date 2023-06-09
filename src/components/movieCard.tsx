@@ -11,7 +11,7 @@ type MovieCardProps = {
     overview: string;
     poster_path: string;
     release_date: string;
-    runtime: Number;
+    runtime: number;
   };
 };
 
@@ -37,25 +37,30 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
   };
 
   return (
-    <div className='cursor-pointer'>
-      <Link rel='preconnect' href={`/movie/${movie.id}`}>
-        <div className='mx-2 my-2 max-w-xs overflow-hidden rounded shadow-lg'>
+    <div className='flex h-full max-h-[675px] flex-col'>
+      <Link className='flex-1' rel='preconnect' href={`/movie/${movie.id}`}>
+        <div className='grid-row-2 grid h-full max-w-xs grid-cols-1 overflow-hidden rounded shadow-lg'>
           <Image
-            className='w-full'
             src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
             alt={movie.title}
             width={320}
             height={460}
           />
-          <div className='px-6 py-4'>
-            <div className='mb-2 text-xl font-bold'>{movie.title}</div>
-            <p className='truncate text-base text-gray-700'>{movie.overview}</p>
-          </div>
-          <div className='flex justify-between px-6 pb-2 pt-4'>
-            <span className='mr-2 inline-block rounded-full bg-gray-200 px-3 py-1 text-sm font-semibold text-gray-700'>
-              {movie.release_date}
-            </span>
-            <WatchButton onClick={handleAddMovie} text='watchlist' />
+          <div className='col-end-auto space-y-3 p-2'>
+            <p className='text-md font-bold'>{movie.title}</p>
+            <p className='line-clamp-3 text-xs text-gray-700'>
+              {movie.overview.split(". ", 1) + "."}
+            </p>
+            <div
+              className='flex flex-col content-end lg:flex-row
+            lg:justify-between'>
+              <span
+                className='flex items-center justify-center rounded-lg bg-gray-200 px-2
+              text-xs font-semibold text-gray-700'>
+                {movie.release_date}
+              </span>
+              <WatchButton onClick={handleAddMovie} text='watchlist' />
+            </div>
           </div>
         </div>
       </Link>

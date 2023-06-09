@@ -34,13 +34,28 @@ export const AppwriteProvider: React.FC<AppwriteProviderProps> = ({
   const [databases] = useState(new Databases(client));
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   useEffect(() => {
-    // Initialize the client on mount
-    client.setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT as string);
-    client.setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID as string);
+    // Check if session token exists in cookie or local storage
+    const sessionToken =
+      localStorage.getItem("sessionToken") ||
+      document.cookie.replace(
+        /(?:(?:^|.*;\s*)sessionToken\s*\=\s*([^;]*).*$)|^.*$/,
+        "$1",
+      );
+    if (sessionToken) {
+      // Set session using stored token
+      client.setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT as string);
+      client.setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID as string);
+      client.setJWT(sessionToken);
+      setIsLoggedIn(true);
+    }
   }, [client]);
   const setLoggedIn = (loggedIn: boolean) => {
     setIsLoggedIn(loggedIn);
+    if (!loggedIn) {
+      localStorage.removeItem("sessionToken");
+    }
   };
+
   return (
     <AppwriteContext.Provider
       value={{ client, account, databases, isLoggedIn, setLoggedIn }}>

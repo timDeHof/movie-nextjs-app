@@ -2,7 +2,9 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
 
 type Data = {
-  data?: any;
+  results?: any[];
+  totalPages?: number;
+  totalResults?: number;
   id?: number;
 };
 export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
@@ -20,17 +22,15 @@ export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
       const totalPages = data.total_pages;
       const totalResults = data.total_results;
       return res.status(200).json({
-        data: {
-          results: movies,
-          totalPages: totalPages,
-          totalResults: totalResults,
-        },
+        results: movies,
+        totalPages: totalPages,
+        totalResults: totalResults,
       });
     } else {
       console.log("it is not a movie");
     }
-  } catch (e) {
-    console.log(e);
-    res.status(500).json({ data: e });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ results: [], totalPages: 0, totalResults: 0 });
   }
 };

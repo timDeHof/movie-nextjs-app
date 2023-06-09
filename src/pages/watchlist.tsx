@@ -12,7 +12,7 @@ import { useAppwrite } from "src/providers/appwriteProvider";
 const Watchlist: NextPage = React.memo(() => {
   // Declare necessary state variables for handling offsets and movies.
   const [offset, setOffset] = useState(0);
-  const [pageLimit] = useState(25);
+  const [pageLimit] = useState(24);
   const [totalMovies, setTotalMovies] = useState(0);
   const [movies, setMovies] = useState([]);
   const { isLoggedIn } = useAppwrite();
