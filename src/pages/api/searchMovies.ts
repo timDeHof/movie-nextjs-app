@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
-
+import { TMDB_URL } from "src/config/routes";
 type Data = {
   results?: any[];
   totalPages?: number;
@@ -13,7 +13,7 @@ export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     const currentPage = req.query.currentPage;
 
     const response = await axios(
-      `https://api.themoviedb.org/3/search/movie?&api_key=${process.env.NEXT_PUBLIC_TMDB_MOVIE_KEY}&include_adult=false&language=en-US&page=${currentPage}&query=${query}`,
+      `${TMDB_URL}&page=${currentPage}&query=${query}`,
     );
     const data = await response.data;
     console.log("response:", data);
