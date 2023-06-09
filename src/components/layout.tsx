@@ -64,12 +64,12 @@ const Layout = ({ children }: any) => {
               {/* The branding text which consists of the words 'Reel' and 'Watch' */}
               <div className='flex items-end justify-center lg:border-l-black'>
                 <p
-                  className='title-font flex cursor-pointer items-center
+                  className='flex cursor-pointer items-center
                 justify-center text-2xl font-medium text-white md:mb-0'>
                   Reel
                 </p>
                 <span
-                  className='title-font flex cursor-pointer items-end
+                  className='flex cursor-pointer items-end
                 text-xl font-medium text-sky-800'>
                   Watch
                 </span>

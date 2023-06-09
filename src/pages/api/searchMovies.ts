@@ -7,7 +7,10 @@ type Data = {
   totalResults?: number;
   id?: number;
 };
-export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<Data>,
+) {
   try {
     const query = req.query.query;
     const currentPage = req.query.currentPage;
@@ -33,4 +36,4 @@ export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     console.log(error);
     res.status(500).json({ results: [], totalPages: 0, totalResults: 0 });
   }
-};
+}

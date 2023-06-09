@@ -43,7 +43,7 @@ const Movie = (props: { movie: any }) => {
                 {" "}
                 {movie.title}{" "}
               </h1>
-              <div className='flex-shrink-1 flex items-center  space-x-2 pr-2 text-sm'>
+              <div className='flex shrink items-center  space-x-2 pr-2 text-sm'>
                 <div className='rounded bg-green-200 px-2 py-1 text-green-700'>
                   <p> {movie.status} </p>
                 </div>
@@ -66,7 +66,8 @@ const Movie = (props: { movie: any }) => {
                 rel='preconnect'
                 href={movie.homepage}
                 target='_blank'
-                className='flex items-center space-x-2 rounded-lg bg-black p-2 pl-5 pr-5 text-lg text-white '>
+                className='flex items-center space-x-2 rounded-lg bg-black p-2
+                px-5 text-lg text-white '>
                 <svg
                   className='h-6 w-6'
                   fill='currentColor'

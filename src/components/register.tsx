@@ -75,7 +75,10 @@ const Register = () => {
               type='text'
               autoComplete='new-password'
               required
-              className='relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm'
+              className='relative block w-full appearance-none rounded-md border
+              border-gray-300 px-3 py-2 text-gray-900 placeholder:text-gray-500
+              focus:z-10 focus:border-indigo-500 focus:outline-none
+              focus:ring-indigo-500 sm:text-sm'
               placeholder='Name'
               value={name}
               onChange={handleNameChange}
@@ -91,7 +94,10 @@ const Register = () => {
               type='email'
               autoComplete='email'
               required
-              className='relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm'
+              className='relative block w-full appearance-none rounded-md border
+              border-gray-300 px-3 py-2 text-gray-900 placeholder:text-gray-500
+              focus:z-10 focus:border-indigo-500 focus:outline-none
+              focus:ring-indigo-500 sm:text-sm'
               placeholder='Email address'
               value={email}
               onChange={handleEmailChange}
@@ -101,14 +107,18 @@ const Register = () => {
             <label htmlFor='register-password' className='sr-only'>
               Password
             </label>
-            <div className='relative flex rounded-md border border-gray-300 px-3 py-2 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm'>
+            <div
+              className='relative flex rounded-md border border-gray-300 px-3
+            py-2 focus:z-10 focus:border-indigo-500 focus:outline-none
+            focus:ring-indigo-500 sm:text-sm'>
               <input
                 id='register-password'
                 name='password'
                 type={showPasswords ? "text" : "password"}
                 autoComplete='new-password'
                 required
-                className='relative  block w-full appearance-none text-gray-900 placeholder-gray-500 focus:outline-none'
+                className='relative  block w-full appearance-none text-gray-900
+                placeholder:text-gray-500 focus:outline-none'
                 placeholder='Password'
                 value={password}
                 onChange={handlePasswordChange}
@@ -148,7 +158,8 @@ const Register = () => {
                 type={showPasswords ? "password" : "text"}
                 autoComplete='new-password'
                 required
-                className='relative block w-full appearance-none text-gray-900 placeholder-gray-500 focus:outline-none'
+                className='relative block w-full appearance-none text-gray-900
+                placeholder:text-gray-500 focus:outline-none'
                 placeholder='Confirm Password'
                 value={confirmPassword}
                 onChange={handleConfirmPasswordChange}
@@ -182,7 +193,7 @@ const Register = () => {
         {error && (
           <div className='rounded-md bg-red-50 p-4'>
             <div className='flex'>
-              <div className='flex-shrink-0'>
+              <div className='shrink-0'>
                 <svg
                   className='h-5 w-5 text-red-400'
                   viewBox='0 0 20 20'
