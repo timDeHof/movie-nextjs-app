@@ -25,4 +25,3 @@ jobs:
       - run: yarn prettier
       # verify that there are no type and build errors
       - run: yarn build
-      - run: yarn start

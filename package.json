@@ -12,10 +12,6 @@
   "bugs": {
     "url": "https://github.com/timDeHof/movie-nextjs-app/issues"
   },
-  "engines": {
-    "npm": ">=5.5.0",
-    "node": ">=9.3.0"
-  },
   "private": true,
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": "eslint --cache --fix",
