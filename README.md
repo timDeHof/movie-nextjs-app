@@ -43,6 +43,15 @@ npm install
 file contains the required environment variables that are injected by Next.js
 via the `dotenv` package.
 
+```bash
+NEXT_PUBLIC_APPWRITE_ENDPOINT="[APPWRITE_ENDPOINT]"
+NEXT_PUBLIC_APPWRITE_PROJECT_ID="[APPWRITE_PROJECT_ID]"
+NEXT_PUBLIC_APPWRITE_SERVER_API_KEY="[APPWRITE_SERVER_API_KEY]"
+NEXT_PUBLIC_APPWRITE_DATABASE_ID="[APPWRITE_DATABASE_ID]"
+NEXT_PUBLIC_APPWRITE_COLLECTION_ID="[APPWRITE_COLLECTION_ID]"
+NEXT_PUBLIC_TMDB_MOVIE_KEY="[TMDB_MOVIE_KEY]"
+```
+
 ### 3. Run Development Server
 
 Finally, run the development server:
