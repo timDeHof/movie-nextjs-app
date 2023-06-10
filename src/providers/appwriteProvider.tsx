@@ -28,7 +28,7 @@ export const AppwriteProvider: React.FC<AppwriteProviderProps> = ({
   const [client] = useState(
     new Client()
       .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT as string)
-      .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID as string),
+      .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID as string)
   );
   const [account] = useState(new Account(client));
   const [databases] = useState(new Databases(client));
@@ -40,7 +40,7 @@ export const AppwriteProvider: React.FC<AppwriteProviderProps> = ({
       localStorage.getItem("sessionToken") ||
       document.cookie.replace(
         /(?:(?:^|.*;\s*)sessionToken\s*\=\s*([^;]*).*$)|^.*$/,
-        "$1",
+        "$1"
       );
     if (sessionToken) {
       // Set session using stored token
@@ -54,12 +54,14 @@ export const AppwriteProvider: React.FC<AppwriteProviderProps> = ({
     setIsLoggedIn(loggedIn);
     if (!loggedIn) {
       localStorage.removeItem("sessionToken");
+      document.cookie = "sessionToken=";
     }
   };
 
   return (
     <AppwriteContext.Provider
-      value={{ client, account, databases, isLoggedIn, setLoggedIn }}>
+      value={{ client, account, databases, isLoggedIn, setLoggedIn }}
+    >
       {children}
     </AppwriteContext.Provider>
   );
