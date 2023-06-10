@@ -6,8 +6,9 @@ interface ButtonProps {
 export default function Button(props: ButtonProps) {
   return (
     <button
-      className='rounded-lg bg-black p-2 px-4 text-lg text-white'
-      onClick={props.onClick}>
+      className="rounded-lg bg-black p-2 px-4 text-lg text-white"
+      onClick={props.onClick}
+    >
       {props.text}
     </button>
   );
@@ -17,7 +18,8 @@ export function RemoveButton(props: ButtonProps) {
     <button
       className="flex place-content-end bg-transparent text-lg text-gray-700
       before:content-[url('../assets/remove.svg')]"
-      onClick={props.onClick}>
+      onClick={props.onClick}
+    >
       {props.text}
     </button>
   );
@@ -27,7 +29,8 @@ export function WatchButton(props: ButtonProps) {
     <button
       className="flex place-content-end bg-transparent text-lg text-gray-700
       before:content-[url('../assets/add.svg')]"
-      onClick={props.onClick}>
+      onClick={props.onClick}
+    >
       {props.text}
     </button>
   );
@@ -36,8 +39,9 @@ export function WatchButton(props: ButtonProps) {
 export function SearchButton(props: ButtonProps) {
   return (
     <button
-      className='rounded-r-lg bg-black p-2 px-4 text-lg text-white'
-      onClick={props.onClick}>
+      className="rounded-r-lg bg-black p-2 px-4 text-lg text-white"
+      onClick={props.onClick}
+    >
       {props.text}
     </button>
   );
