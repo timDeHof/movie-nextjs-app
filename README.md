@@ -3,6 +3,7 @@
   <img alt="Version" src="https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000" />
   <img src="https://img.shields.io/badge/npm-%3E%3D5.5.0-blue.svg" />
   <img src="https://img.shields.io/badge/node-%3E%3D9.3.0-blue.svg" />
+  <img src="https://img.shields.io/badge/yarn-%3E%3D3.6.0-blue.svg" />
   <a href="https://github.com/timDeHof/movie-nextjs-app#readme" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
@@ -23,6 +24,7 @@
 
 - npm >=5.5.0
 - node >=9.3.0
+- yarn >= 3.6.0
 - an account to [appwrite.io](https://appwrite.io/)
 
 ## Getting Started
@@ -34,7 +36,7 @@ others. To start working on the project, first clone the repository on your
 local machine and install the dependencies.
 
 ```bash
-npm install
+npm install or yarn
 ```
 
 ### 2. Create .env File
@@ -57,7 +59,7 @@ NEXT_PUBLIC_TMDB_MOVIE_KEY="[TMDB_MOVIE_KEY]"
 Finally, run the development server:
 
 ```bash
-npm run dev
+npm run dev or yarn dev
 ```
 
 Now you can open [http://localhost:3000](http://localhost:3000) with your
@@ -84,8 +86,7 @@ Give a ⭐️ if this project helped you!
 ## 📝 License
 
 Copyright © 2023 [Tim DeHof](https://github.com/timDeHof).<br /> This project is
-[MIT](https://github.com/timDeHof/movie-nextjs-app/blob/main/LICENSE)
-licensed.
+[MIT](https://github.com/timDeHof/movie-nextjs-app/blob/main/LICENSE) licensed.
 
 ---
 
