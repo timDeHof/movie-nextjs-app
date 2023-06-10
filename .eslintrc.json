@@ -2,9 +2,15 @@
   "extends": [
     "next/core-web-vitals",
     "prettier",
+    "plugin:@typescript-eslint/recommended",
     "plugin:tailwindcss/recommended"
   ],
+  "plugins": ["@typescript-eslint", "react-hooks"],
   "rules": {
-    "react/display-name": "off"
+    "react/display-name": "off",
+    "no-empty-function": "off",
+    "@typescript-eslint/no-empty-function": "off",
+    "react-hooks/rules-of-hooks": "error", // For checking rules of hooks
+    "react-hooks/exhaustive-deps": "off" // For checking hook dependencies
   }
 }
