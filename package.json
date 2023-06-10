@@ -17,6 +17,11 @@
     "node": ">=9.3.0"
   },
   "private": true,
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": "eslint --cache --fix",
+    "*.{ts,tsx}": "bash -c 'tsc --noEmit'",
+    "*.{js,jsx,ts,tsx,css,md}": "prettier --write"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
