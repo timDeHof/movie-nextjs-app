@@ -13,11 +13,6 @@
     "url": "https://github.com/timDeHof/movie-nextjs-app/issues"
   },
   "private": true,
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": "eslint --cache --fix",
-    "*.{ts,tsx}": "bash -c 'tsc --noEmit'",
-    "*.{js,jsx,ts,tsx,css,md}": "prettier --write"
-  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
