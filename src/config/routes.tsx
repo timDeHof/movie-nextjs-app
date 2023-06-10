@@ -1,6 +1,7 @@
 export const Routes = {
   home: "/",
   watchList: "/watchlist",
+  signinAndRegister: "/signinAndRegister",
   search: "/search",
 };
 

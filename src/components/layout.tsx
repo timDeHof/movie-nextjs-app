@@ -40,49 +40,43 @@ const Layout = ({ children }: LayoutProps) => {
       {/* The header meta tags */}
       <Head>
         <link
-          rel="apple-touch-icon"
-          sizes="180x180"
-          href="/images/apple-touch-icon.png"
-        ></link>
+          rel='apple-touch-icon'
+          sizes='180x180'
+          href='/images/apple-touch-icon.png'></link>
         <link
-          rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="/images/favicon-32x32.png"
-        ></link>
+          rel='icon'
+          type='image/png'
+          sizes='32x32'
+          href='/images/favicon-32x32.png'></link>
         <link
-          rel="icon"
-          type="image/png"
-          sizes="16x16"
-          href="/images/favicon-16x16.png"
-        ></link>
-        <link rel="icon" href="/images/favicon.ico" sizes="any"></link>
-        <link rel="manifest" href="/images/site.webmanifest"></link>
+          rel='icon'
+          type='image/png'
+          sizes='16x16'
+          href='/images/favicon-16x16.png'></link>
+        <link rel='icon' href='/images/favicon.ico' sizes='any'></link>
+        <link rel='manifest' href='/images/site.webmanifest'></link>
         <title>ReelWatch</title>
       </Head>
       {/* The header section */}
-      <header className="w-screen text-sky-800">
+      <header className='w-screen text-sky-800'>
         <div
-          className="flex w-screen flex-col flex-wrap items-center
+          className='flex w-screen flex-col flex-wrap items-center
         bg-header-image bg-cover bg-[center_20%] px-20 py-8 opacity-70
-        bg-blend-multiply md:flex-row"
-        >
+        bg-blend-multiply md:flex-row'>
           {/* The application logo */}
-          <Link rel="preconnect" href={Routes.home}>
-            <div className="flex max-w-xs flex-row space-x-2">
+          <Link rel='preconnect' href={Routes.home}>
+            <div className='flex max-w-xs flex-row space-x-2'>
               <Image src={reelLogo} alt={"logo"} width={32} height={32} />
               {/* The branding text which consists of the words 'Reel' and 'Watch' */}
-              <div className="flex items-end justify-center lg:border-l-black">
+              <div className='flex items-end justify-center lg:border-l-black'>
                 <p
-                  className="flex cursor-pointer items-center
-                justify-center text-2xl font-medium text-white md:mb-0"
-                >
+                  className='flex cursor-pointer items-center
+                justify-center text-2xl font-medium text-white md:mb-0'>
                   Reel
                 </p>
                 <span
-                  className="flex cursor-pointer items-end
-                text-xl font-medium text-sky-800"
-                >
+                  className='flex cursor-pointer items-end
+                text-xl font-medium text-sky-800'>
                   Watch
                 </span>
               </div>
@@ -90,25 +84,29 @@ const Layout = ({ children }: LayoutProps) => {
           </Link>
           {/* The navigation menu */}
           <nav
-            className="flex flex-wrap items-center justify-center text-base
-          md:ml-4 md:mr-auto md:border-l md:border-gray-400 md:py-1 md:pl-4"
-          >
-            <span className="mr-5 hover:text-sky-900">
+            className='flex flex-wrap items-center justify-center text-base
+          md:ml-4 md:mr-auto md:border-l md:border-gray-400 md:py-1 md:pl-4'>
+            <span className='mr-5 hover:text-sky-900'>
               <Link href={Routes.search}>Find Movies</Link>
             </span>
-            <span className="mr-5 hover:text-sky-900">
-              <Link rel="preconnect" href={Routes.watchList}>
+            <span className='mr-5 hover:text-sky-900'>
+              <Link rel='preconnect' href={Routes.watchList}>
                 My Watchlist
               </Link>
             </span>
           </nav>
-          {isLoggedIn && (
+          {isLoggedIn ? (
             <button
-              className="rounded-lg bg-black p-2 px-4 text-lg text-white"
-              onClick={() => logout(account, router)}
-            >
+              className='rounded-lg bg-black p-2 px-4 text-lg text-white'
+              onClick={() => logout(account, router)}>
               logout
             </button>
+          ) : (
+            <Link
+              className='rounded-lg bg-black p-2 px-4 text-lg text-white'
+              href={Routes.signinAndRegister}>
+              Sign and Register
+            </Link>
           )}
         </div>
       </header>
