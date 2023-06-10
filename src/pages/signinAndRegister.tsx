@@ -2,7 +2,7 @@ import Layout from "@components/layout";
 import React from "react";
 import Login from "src/components/login";
 import Register from "src/components/register";
-export const signInAndRegister = () => {
+const signInAndRegister = () => {
   return (
     <Layout>
       <div className='flex h-screen w-full flex-col items-center'>
@@ -16,3 +16,4 @@ export const signInAndRegister = () => {
     </Layout>
   );
 };
+export default signInAndRegister;
