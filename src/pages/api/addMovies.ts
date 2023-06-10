@@ -9,13 +9,13 @@ type Data = {
 };
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>,
+  res: NextApiResponse<Data>
 ) {
   try {
     const movieID = req.query.movieID;
 
     const response = await fetch(
-      `https://api.themoviedb.org/3/movie/${movieID}?api_key=${process.env.NEXT_PUBLIC_TMDB_MOVIE_KEY}&language=en-US`,
+      `https://api.themoviedb.org/3/movie/${movieID}?api_key=${process.env.NEXT_PUBLIC_TMDB_MOVIE_KEY}&language=en-US`
     );
     const data = await response.json();
     console.log("data in addMovies:", data);
@@ -27,7 +27,7 @@ export default async function handler(
       const movieInDatabase = await databases.listDocuments(
         process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID as string,
         process.env.NEXT_PUBLIC_APPWRITE_COLLECTION_ID as string,
-        [Query.equal("movie_id", id)],
+        [Query.equal("movie_id", id)]
       );
 
       if (movieInDatabase.documents.length > 0) {
@@ -48,7 +48,7 @@ export default async function handler(
             vote_average: item.vote_average,
             watched: false,
             runtime: item.runtime,
-          },
+          }
         );
 
         return res.status(200).json({ id });

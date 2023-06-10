@@ -4,16 +4,18 @@ import { Query } from "appwrite";
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse,
+  res: NextApiResponse
 ) {
   try {
-    const limit: any = req.query.limit;
-    const offset: any = req.query.offset;
+    const limit: number = parseInt(req.query.limit as string);
+    const offsetParam: string | string[] | undefined = req.query.offset;
+    const offset: number =
+      typeof offsetParam === "string" ? parseInt(offsetParam) : 0;
 
-    let response = await databases.listDocuments(
+    const response = await databases.listDocuments(
       process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID as string,
       process.env.NEXT_PUBLIC_APPWRITE_COLLECTION_ID as string,
-      [Query.limit(limit), Query.offset(offset)],
+      [Query.limit(limit), Query.offset(offset)]
     );
     // console.log(response.total);
     res.status(200).json({ data: response, count: response.total });

@@ -18,9 +18,12 @@ const Watchlist: NextPage = React.memo(() => {
   const [movies, setMovies] = useState([]);
   const { isLoggedIn } = useAppwrite();
   // Define an asynchronous function to fetch the movies data using an api endpoint.
-  const fetchMovies = async (limit: number, offset: number) => {
+  const fetchMovies = async (
+    limit: number | undefined,
+    offset: number | undefined
+  ) => {
     const response = await fetch(
-      `/api/getMovies?limit=${limit}&offset=${offset}`,
+      `/api/getMovies?limit=${limit}&offset=${offset}`
     );
     const data = await response.json();
     setMovies(data?.data?.documents || []);
@@ -37,7 +40,7 @@ const Watchlist: NextPage = React.memo(() => {
         fetchMovies(pageLimit, offset);
       }
     },
-    [pageLimit, offset],
+    [pageLimit, offset]
   );
 
   // Implement the 'useEffect' hook to fetch the movies data after the component mounts.
@@ -72,13 +75,13 @@ const Watchlist: NextPage = React.memo(() => {
   return (
     <Layout>
       {movies.length === 0 ? (
-        <div className='flex flex-col items-center justify-center space-y-4 text-xl text-gray-300 opacity-50'>
-          <p className=''>Your watchlist looks empty.</p>
-          <Image src={noMoviesImage} alt='no movies icon'></Image>
+        <div className="flex flex-col items-center justify-center space-y-4 text-xl text-gray-300 opacity-50">
+          <p className="">Your watchlist looks empty.</p>
+          <Image src={noMoviesImage} alt="no movies icon"></Image>
           <p>
             {" "}
             Head over to{" "}
-            <Link className=' text-sky-600' href={"/search"}>
+            <Link className=" text-sky-600" href={"/search"}>
               {" "}
               Find Movies{" "}
             </Link>{" "}
@@ -87,42 +90,45 @@ const Watchlist: NextPage = React.memo(() => {
       ) : (
         <>
           {/* Render JSX to display the list of movies */}
-          <section className='pb-4 text-gray-600'>
+          <section className="pb-4 text-gray-600">
             <div
-              className='mt-6 grid grid-cols-1 gap-16 sm:grid-cols-2
-            lg:grid-cols-4 xl:gap-x-16'>
+              className="mt-6 grid grid-cols-1 gap-16 sm:grid-cols-2
+            lg:grid-cols-4 xl:gap-x-16"
+            >
               {movies.map((movie: MovieType) => {
                 return (
                   <div
-                    className='cursor-pointer rounded-md bg-white drop-shadow-xl'
-                    key={movie.$id}>
-                    <div className='group relative'>
-                      <Link rel='preconnect' href={`/movie/${movie.movie_id}`}>
+                    className="cursor-pointer rounded-md bg-white drop-shadow-xl"
+                    key={movie.$id}
+                  >
+                    <div className="group relative">
+                      <Link rel="preconnect" href={`/movie/${movie.movie_id}`}>
                         <div
-                          className='lg:aspect-1 aspect-h-1 aspect-w-1
+                          className="lg:aspect-1 aspect-h-1 aspect-w-1
                         min-h-fit w-full text-clip rounded-t-md bg-gray-200
-                        group-hover:opacity-75 lg:h-96'>
+                        group-hover:opacity-75 lg:h-96"
+                        >
                           <Image
                             src={IMG_URL + movie.thumbnail_image}
                             alt={movie.title}
                             fill
-                            sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                           />
                         </div>
                       </Link>
-                      <div className='mt-2 flex p-2'>
-                        <div className='w-full'>
-                          <div className='flex w-auto flex-col'>
-                            <div className='flex justify-between'>
+                      <div className="mt-2 flex p-2">
+                        <div className="w-full">
+                          <div className="flex w-auto flex-col">
+                            <div className="flex justify-between">
                               <RemoveButton
                                 onClick={() => {
                                   handleDeleteMovie(movie);
                                 }}
-                                text='watchlist'
+                                text="watchlist"
                               />
 
-                              <div className='flex h-4 justify-end font-semibold'>
-                                <span className='text-sky-400 '>
+                              <div className="flex h-4 justify-end font-semibold">
+                                <span className="text-sky-400 ">
                                   {parseFloat(movie.vote_average)
                                     .toFixed(1)
                                     .toString()}
@@ -130,20 +136,20 @@ const Watchlist: NextPage = React.memo(() => {
                                 <span> /10</span>
                               </div>
                             </div>
-                            <h3 className='m-0 table-cell text-lg text-gray-700'>
+                            <h3 className="m-0 table-cell text-lg text-gray-700">
                               {movie.title}
                             </h3>
                           </div>
-                          <div className='flex justify-between'>
-                            <label className='mr-1 text-center font-bold text-gray-800'>
+                          <div className="flex justify-between">
+                            <label className="mr-1 text-center font-bold text-gray-800">
                               Released
-                              <p className='text-sm text-gray-500'>
+                              <p className="text-sm text-gray-500">
                                 {movie.release_date}
                               </p>
                             </label>
-                            <label className='mr-1 text-center font-bold text-gray-800'>
+                            <label className="mr-1 text-center font-bold text-gray-800">
                               Runtime
-                              <p className='text-sm text-gray-500'>
+                              <p className="text-sm text-gray-500">
                                 {toHoursAndMinutes(movie.runtime)}
                               </p>
                             </label>
