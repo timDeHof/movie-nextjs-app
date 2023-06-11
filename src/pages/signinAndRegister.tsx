@@ -11,7 +11,6 @@ const SignInAndRegister = () => {
         // Render the Login component inside the container element.
         <Login />
         // Render the Register component inside the container element.
-        <Register />
       </div>
     </Layout>
   );
