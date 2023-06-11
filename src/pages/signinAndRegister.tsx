@@ -1,7 +1,7 @@
 import Layout from "@components/layout";
 import React from "react";
-import Login from "src/components/login";
-import Register from "src/components/register";
+import Login from "@components/login";
+import Register from "@components/register";
 const signInAndRegister = () => {
   return (
     <Layout>
