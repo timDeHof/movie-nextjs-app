@@ -86,7 +86,7 @@ const Watchlist: NextPage = React.memo(() => {
           {/* Render JSX to display the list of movies */}
           <section className='pb-4 text-gray-600'>
             <div
-              className='mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2
+              className='my-6 grid grid-cols-1 gap-4 sm:grid-cols-2
             lg:grid-cols-4 xl:gap-x-4'>
               {movies.map((movie: MovieType) => {
                 return (

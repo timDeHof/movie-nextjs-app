@@ -15,13 +15,13 @@ function WatchlistItem(props: WatchlistItemProps) {
     props.handleDeleteMovie(props.movie);
   }, [props.movie, props.handleDeleteMovie]);
   return (
-    <div className='h-full cursor-pointer flex-col rounded bg-white'>
+    <div className='h-full cursor-pointer flex-col rounded '>
       <Link
         className='flex-1'
         rel='preconnect'
         href={`/movie/${props.movie.movie_id}`}
         passHref>
-        <div className='ease-out-in grid max-w-sm grid-cols-1 rounded shadow-lg duration-300 hover:scale-105'>
+        <div className='grid max-w-sm grid-cols-1 rounded bg-white shadow-lg duration-300 ease-in-out hover:scale-105'>
           <Image
             className='rounded-t-md'
             src={IMG_URL + props.movie.thumbnail_image}

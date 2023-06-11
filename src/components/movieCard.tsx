@@ -40,7 +40,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
   return (
     <div className='flex h-full max-h-[675px] flex-col'>
       <Link className='flex-1' rel='preconnect' href={`/movie/${movie.id}`}>
-        <div className='grid max-w-xs grid-cols-1 overflow-hidden rounded shadow-lg duration-300 ease-out hover:scale-105'>
+        <div className='grid max-w-xs grid-cols-1 overflow-hidden rounded shadow-lg duration-300 ease-in-out hover:scale-105'>
           <Image
             src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
             alt={movie.title}
