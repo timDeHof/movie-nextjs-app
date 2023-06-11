@@ -51,8 +51,10 @@ const Login = () => {
         Login to your account
       </h2>
       <div>
-        <span>Don't have an account </span>
-        <Link className='cursor-pointer' href={Routes.register}>
+        <span>Don&apos;t have an account </span>
+        <Link
+          className='cursor-pointer text-sky-800 underline underline-offset-4 hover:text-rose-900'
+          href={Routes.register}>
           Click here
         </Link>
       </div>
