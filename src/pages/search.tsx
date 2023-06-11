@@ -29,7 +29,6 @@ const Search: NextPage = () => {
   };
   useEffect(() => {
     const fetchData = async () => {
-      console.log(searchTerm);
       try {
         const endpoint =
           searchTerm === ""
@@ -39,7 +38,7 @@ const Search: NextPage = () => {
         const data = await response.json();
         console.log(data);
         setAllMovies((previous) =>
-          currentPage === 1 ? data.results : [...previous, ...data.results]
+          currentPage === 1 ? data.results : [...previous, ...data.results],
         );
 
         setCounts({
@@ -56,7 +55,7 @@ const Search: NextPage = () => {
   const handleSearchMovie = async () => {
     try {
       const response = await fetch(
-        `/api/searchMovies?query=${searchTerm}&currentPage=${currentPage}`
+        `/api/searchMovies?query=${searchTerm}&currentPage=${currentPage}`,
       );
       const data = await response.json();
       console.log("search data: ", data);
@@ -82,7 +81,7 @@ const Search: NextPage = () => {
       body.offsetHeight,
       html.clientHeight,
       html.scrollHeight,
-      html.offsetHeight
+      html.offsetHeight,
     );
     const windowBottom = windowHeight + window.pageYOffset;
     if (windowBottom >= docHeight - 1) {
@@ -99,30 +98,29 @@ const Search: NextPage = () => {
   return (
     <Layout>
       {isLoggedIn ? (
-        <div className="h-full">
-          <label className="flex flex-row justify-center">
+        <div className='h-full'>
+          <label className='flex flex-row justify-center'>
             <input
-              type="text"
+              type='text'
               value={searchTerm}
-              className=" block w-1/2 rounded-l-lg border-2 border-black px-6"
-              placeholder="Search for a movie"
+              className=' block w-1/2 rounded-l-lg border-2 border-black px-6'
+              placeholder='Search for a movie'
               onChange={(e) => onChangeSearch(e.target.value)}
             />
-            <SearchButton onClick={handleSearchMovie} text="find Movie" />
+            <SearchButton onClick={handleSearchMovie} text='find Movie' />
           </label>
           <div>
-            <h1 className="text-2xl font-bold">
+            <h1 className='text-2xl font-bold'>
               {searchTerm ? `Results for: ${searchTerm}` : "Latest movies"}
             </h1>
-            <hr className="border-black text-gray-900"></hr>
+            <hr className='border-black text-gray-900'></hr>
           </div>
           <div
-            className="mt-6 grid grid-cols-1 gap-16 sm:grid-cols-2
-          lg:grid-cols-4 xl:gap-x-16"
-          >
+            className='mt-6 grid grid-cols-1 gap-16 sm:grid-cols-2
+          lg:grid-cols-4 xl:gap-x-16'>
             {allMovies &&
               allMovies.map((movie, id) => (
-                <div className="flex" key={id}>
+                <div className='flex' key={id}>
                   <MovieCard movie={movie} />
                 </div>
               ))}

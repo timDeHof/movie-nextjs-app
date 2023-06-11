@@ -97,17 +97,25 @@ const Layout = ({ children }: LayoutProps) => {
           </nav>
           {isLoggedIn ? (
             <button
-              className='rounded-lg bg-black p-2 px-4 text-lg text-white'
+              className='rounded-lg bg-sky-800 p-2 px-4 text-sm uppercase text-white hover:bg-sky-900'
               onClick={() => logout(account, router)}>
               logout
             </button>
           ) : (
-            <Link
-              className='rounded-lg bg-black p-2 px-4 text-lg text-white'
-              rel='preconnect'
-              href={Routes.signInAndRegister}>
-              Sign and Register
-            </Link>
+            <div className='flex w-full justify-around lg:w-2/12'>
+              <Link
+                className='rounded-lg bg-sky-800 p-2 px-4 text-sm uppercase text-white hover:bg-sky-900'
+                rel='preconnect'
+                href={Routes.login}>
+                Login
+              </Link>
+              <Link
+                className='rounded-lg bg-sky-800 p-2 px-4 text-sm uppercase text-white hover:bg-sky-900'
+                rel='preconnect'
+                href={Routes.register}>
+                Register
+              </Link>
+            </div>
           )}
         </div>
       </header>
