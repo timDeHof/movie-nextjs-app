@@ -12,5 +12,4 @@ export interface MovieType {
   title: string; // The title of the movie
   vote_average: string;
   runtime: number; // The average rating given to the movie by users
-  // add any other properties here (if applicable)
 }

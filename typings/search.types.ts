@@ -8,7 +8,7 @@ type SearchMeta = {
 };
 
 export type Movies = {
-  movie_id: number;
+  id: number;
   title: string;
   homepage: string;
   overview: string;
