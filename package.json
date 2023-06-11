@@ -12,22 +12,12 @@
   "bugs": {
     "url": "https://github.com/timDeHof/movie-nextjs-app/issues"
   },
-  "engines": {
-    "npm": ">=5.5.0",
-    "node": ">=9.3.0"
-  },
   "private": true,
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": "eslint --cache --fix",
-    "*.{ts,tsx}": "bash -c 'tsc --noEmit'",
-    "*.{js,jsx,ts,tsx,css,md}": "prettier --write"
-  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prepare": "husky install",
     "prettier": "prettier --check .",
     "format": "prettier --write ."
   },
@@ -43,7 +33,6 @@
     "eslint": "8.41.0",
     "eslint-config-next": "13.4.3",
     "eslint-plugin-tailwindcss": "^3.12.1",
-    "husky": "^8.0.3",
     "next": "13.4.3",
     "postcss": "8.4.23",
     "react": "18.2.0",

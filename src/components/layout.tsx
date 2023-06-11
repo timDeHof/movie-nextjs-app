@@ -104,7 +104,7 @@ const Layout = ({ children }: LayoutProps) => {
           ) : (
             <Link
               className='rounded-lg bg-black p-2 px-4 text-lg text-white'
-              href={Routes.signinAndRegister}>
+              href={Routes.signInAndRegister}>
               Sign and Register
             </Link>
           )}

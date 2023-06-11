@@ -1,7 +1,7 @@
 export const Routes = {
   home: "/",
   watchList: "/watchlist",
-  signinAndRegister: "/signinAndRegister",
+  signInAndRegister: "/signInAndRegister",
   search: "/search",
 };
 
