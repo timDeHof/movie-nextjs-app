@@ -8,6 +8,7 @@ import { MovieType } from "@typings/movie.types";
 import noMoviesImage from "../../assets/no-movies-Icon.png";
 import { useAppwrite } from "src/providers/appwriteProvider";
 import WatchlistItem from "@components/watchlistItem";
+import { Routes } from "src/config/routes";
 
 const Watchlist: NextPage = React.memo(() => {
   // Declare necessary state variables for handling offsets and movies.
@@ -61,7 +62,17 @@ const Watchlist: NextPage = React.memo(() => {
   if (!isLoggedIn) {
     return (
       <Layout>
-        <p>Please login to view the watchlist </p>
+        <div className='h-screen'>
+          <p>
+            Please{" "}
+            <Link
+              className='cursor-pointer text-sky-800 underline underline-offset-4 hover:text-rose-900'
+              href={Routes.login}>
+              login
+            </Link>{" "}
+            to view the watchlist{" "}
+          </p>
+        </div>
       </Layout>
     );
   }
@@ -75,9 +86,11 @@ const Watchlist: NextPage = React.memo(() => {
           <p>
             {" "}
             Head over to{" "}
-            <Link className=' text-sky-600' href={"/search"}>
+            <Link
+              className='cursor-pointer text-sky-800 underline underline-offset-4 hover:text-rose-900'
+              href={"/search"}>
               {" "}
-              Find Movies{" "}
+              Search for Movies{" "}
             </Link>{" "}
           </p>
         </div>

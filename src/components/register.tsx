@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useAppwrite } from "../providers/appwriteProvider";
 import { v4 as uuidv4 } from "uuid";
 import { Routes } from "../config/routes";
+import Link from "next/link";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -45,7 +46,7 @@ const Register = () => {
     try {
       await account.create(uuidv4(), email, password, name);
       setLoggedIn(true);
-      router.push(Routes.search);
+      router.push(Routes.watchList);
     } catch (error) {
       setError("Unable to create account");
     }
@@ -59,7 +60,12 @@ const Register = () => {
           role='heading'
           aria-label='Create your account'
           className='text-center text-2xl font-extrabold leading-6 text-gray-800'>
-          Create an account
+          Create an account{" "}
+          <Link
+            className='cursor-pointer text-sky-800 underline underline-offset-4 hover:text-rose-900'
+            href={Routes.register}>
+            Here
+          </Link>
         </h2>
       </div>
       <form className='mt-8 space-y-6' onSubmit={handleSubmit}>

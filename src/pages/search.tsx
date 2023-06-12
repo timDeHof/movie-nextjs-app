@@ -4,6 +4,8 @@ import Layout from "src/components/layout";
 import MovieCard from "src/components/movieCard";
 import { SearchButton } from "src/components/button";
 import { useAppwrite } from "@providers/appwriteProvider";
+import Link from "next/link";
+import { Routes } from "src/config/routes";
 
 const Search: NextPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -127,7 +129,17 @@ const Search: NextPage = () => {
           </div>
         </div>
       ) : (
-        <p>Please login</p>
+        <div className='h-screen'>
+          <p>
+            Please{" "}
+            <Link
+              className='cursor-pointer text-sky-800 underline underline-offset-4 hover:text-rose-900'
+              href={Routes.login}>
+              login
+            </Link>{" "}
+            search for movies
+          </p>
+        </div>
       )}
     </Layout>
   );
