@@ -60,12 +60,7 @@ const Register = () => {
           role='heading'
           aria-label='Create your account'
           className='text-center text-2xl font-extrabold leading-6 text-gray-800'>
-          Create an account{" "}
-          <Link
-            className='cursor-pointer text-sky-800 underline underline-offset-4 hover:text-rose-900'
-            href={Routes.register}>
-            Here
-          </Link>
+          Create an account
         </h2>
       </div>
       <form className='mt-8 space-y-6' onSubmit={handleSubmit}>
