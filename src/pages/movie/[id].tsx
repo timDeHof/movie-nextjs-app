@@ -14,7 +14,7 @@ const Movie = (props: { movie: Movies }) => {
 
   const handleAddMovie = async () => {
     try {
-      const response = await fetch(`/api/addMovies?movieID=${movie.movie_id}`);
+      const response = await fetch(`/api/addMovies?movieID=${movie.id}`);
       const data = await response.json();
       if (response.status === 200 && data.id) {
         console.log(
