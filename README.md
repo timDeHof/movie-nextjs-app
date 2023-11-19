@@ -47,14 +47,14 @@ local machine and install the dependencies.
    git clone https://github.com/timDeHof/movie-nextjs-app.git
    cd movie-nextjs-app
 ```
-2. **Install dependencies:
+2. **Install dependencies:**
 ```bash
 npm install
 # or
 yarn
 ```
 
-### 2. Create .env File
+ 3. **Create .env file**
 
 **copy the `.env.local.template` file to a new file called `.env.local`.** This
 file contains the required environment variables that are injected by Next.js
@@ -69,7 +69,7 @@ NEXT_PUBLIC_APPWRITE_COLLECTION_ID="[APPWRITE_COLLECTION_ID]"
 NEXT_PUBLIC_TMDB_MOVIE_KEY="[TMDB_MOVIE_KEY]"
 ```
 
-### 3. Run Development Server
+4. **Run Development Server**
 
 Finally, run the development server:
 
