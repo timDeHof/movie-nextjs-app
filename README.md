@@ -24,6 +24,10 @@
 - **Responsive Design**: Enjoy a seamless experience on any device.
 - **User Authentication**: Securely log in and manage your watchlist.
 
+  
+![Homepage](https://cdn.hashnode.com/res/hashnode/image/upload/v1686532494367/d09e48f2-4028-4ca9-849d-89e00edfa175.gif)
+
+![Search Results](https://media.giphy.com/media/lMjZFyX1cdpISnFMhn/giphy.gif)
 ### 🏠 [Homepage](https://reelwatch.vercel.app/)
 
 ## Getting Started
