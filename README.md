@@ -15,28 +15,43 @@
   </a>
 </p>
 
-> A web app that users can search for their favorite movies and add them to
-> their personal watchlist
+> Welcome to Reelwatch, a web app where users can search for their favorite movies and add them to their personal watchlist. Built with Next.js, TypeScript, Tailwind CSS, and Appwrite Cloud, this app offers a seamless and engaging experience for movie enthusiasts.
+
+
+## Features
+- **Movie Search**: Easily search for movies using the TMDB API.
+- **Personal Watchlist**: Add movies to a personalized watchlist.
+- **Responsive Design**: Enjoy a seamless experience on any device.
+- **User Authentication**: Securely log in and manage your watchlist.
 
 ### 🏠 [Homepage](https://reelwatch.vercel.app/)
 
-## Prerequisites
+## Getting Started
+
+### Prerequisites
 
 - npm >=5.5.0
-- node >=9.3.0
+- node >=12.0.0 (Recommended: Latest LTS Version)
 - yarn >= 3.6.0
 - an account to [appwrite.io](https://appwrite.io/)
 
-## Getting Started
+### Installation
 
-### 1. Clone & Install
+1. **Clone the repository:**
 
 This project is built with Next.js, TypeScript, tailwind & appwrite cloud among
 others. To start working on the project, first clone the repository on your
 local machine and install the dependencies.
 
 ```bash
-npm install or yarn
+   git clone https://github.com/timDeHof/movie-nextjs-app.git
+   cd movie-nextjs-app
+```
+2. **Install dependencies:
+```bash
+npm install
+# or
+yarn
 ```
 
 ### 2. Create .env File
@@ -59,11 +74,27 @@ NEXT_PUBLIC_TMDB_MOVIE_KEY="[TMDB_MOVIE_KEY]"
 Finally, run the development server:
 
 ```bash
-npm run dev or yarn dev
+npm run dev
+# or
+yarn dev
 ```
 
 Now you can open [http://localhost:3000](http://localhost:3000) with your
 browser to see the application.
+
+## Testing
+To run the test suite, use the following command:
+```bash
+npm test
+# or
+yarn test
+```
+## Contributing
+
+We welcome contributions to Reelwatch! Please read our Contributing Guide for details on our code of conduct and the process for submitting pull requests.
+
+## Support
+Give a ⭐️ if this project helped you! For support, feel free to open an issue here.
 
 ## Author
 
