@@ -17,7 +17,6 @@ export default async function handler(
       process.env.NEXT_PUBLIC_APPWRITE_COLLECTION_ID as string,
       [Query.limit(limit), Query.offset(offset)]
     );
-    // console.log(response.total);
     res.status(200).json({ data: response, count: response.total });
   } catch (e) {
     res.status(500).json({ data: e });

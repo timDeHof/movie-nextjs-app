@@ -1,21 +1,22 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { Account, Client, Databases } from "appwrite";
+import { Account, Client, Databases, ID } from "appwrite";
+import { account, databases, client} from '../../lib/appwrite'
 
 interface AppwriteProviderProps {
   children: React.ReactNode;
 }
 interface AppwriteContextType {
-  client: Client;
-  account: Account;
-  databases: Databases;
+  client;
+  account;
+  databases
   isLoggedIn: boolean;
   setLoggedIn: (loggedIn: boolean) => void;
 }
 
 const AppwriteContext = createContext<AppwriteContextType>({
-  client: new Client(),
-  account: new Account(new Client()),
-  databases: new Databases(new Client()),
+  client,
+  account,
+  databases,
   isLoggedIn: false,
   setLoggedIn: () => {},
 });
@@ -25,13 +26,7 @@ export const useAppwrite = () => useContext(AppwriteContext);
 export const AppwriteProvider: React.FC<AppwriteProviderProps> = ({
   children,
 }) => {
-  const [client] = useState(
-    new Client()
-      .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT as string)
-      .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID as string)
-  );
-  const [account] = useState(new Account(client));
-  const [databases] = useState(new Databases(client));
+
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {

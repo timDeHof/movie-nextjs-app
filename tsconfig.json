@@ -37,6 +37,6 @@
     "styles/globals.css",
     "src/components/layout.tsx",
     "src/components/Pagination.tsx"
-  ],
+, "src/providers/userProvider.tsx"  ],
   "exclude": ["node_modules"]
 }

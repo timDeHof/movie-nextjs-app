@@ -1,13 +1,18 @@
 import "../../styles/globals.css";
 import React from "react";
 import { AppProps } from "next/app";
-import { AppwriteProvider } from "../providers/appwriteProvider";
-
+import { UserProvider } from "@providers/userProvider";
+import { WatchlistProvider} from "@providers/databaseProvider"
+import { Provider } from "jotai";
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (
-    <AppwriteProvider>
-      <Component {...pageProps} />
-    </AppwriteProvider>
+          <UserProvider>
+            <WatchlistProvider>
+            <Provider>
+              <Component {...pageProps} />
+             </Provider>
+            </WatchlistProvider>
+          </UserProvider>
   );
 };
 

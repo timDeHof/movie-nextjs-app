@@ -6,17 +6,20 @@ import Link from "next/link";
 import Image from "next/image";
 import { MovieType } from "@typings/movie.types";
 import noMoviesImage from "../../assets/no-movies-Icon.png";
-import { useAppwrite } from "src/providers/appwriteProvider";
+import { useUser } from "@providers/userProvider";
 import WatchlistItem from "@components/watchlistItem";
 import { Routes } from "src/config/routes";
+import { isLoggedInAtom } from "src/atoms/user";
+import { useAtomValue } from "jotai";
 
 const Watchlist: NextPage = React.memo(() => {
   // Declare necessary state variables for handling offsets and movies.
   const [offset, setOffset] = useState(0);
-  const [pageLimit] = useState(24);
+  const [pageLimit] = useState(8);
   const [totalMovies, setTotalMovies] = useState(0);
   const [movies, setMovies] = useState([]);
-  const { isLoggedIn } = useAppwrite();
+  const user = useUser();
+  const isLoggedIn = useAtomValue(isLoggedInAtom);
   // Define an asynchronous function to fetch the movies data using an api endpoint.
   const fetchMovies = async (
     limit: number | undefined,
@@ -59,6 +62,7 @@ const Watchlist: NextPage = React.memo(() => {
       });
     }
   }, [offset, pageLimit]);
+
   if (!isLoggedIn) {
     return (
       <Layout>
@@ -66,7 +70,7 @@ const Watchlist: NextPage = React.memo(() => {
           <p>
             Please{" "}
             <Link
-              className='cursor-pointer text-sky-800 underline underline-offset-4 hover:text-rose-900'
+              className='underline cursor-pointer text-sky-800 underline-offset-4 hover:text-rose-900'
               href={Routes.login}>
               login
             </Link>{" "}
@@ -87,7 +91,7 @@ const Watchlist: NextPage = React.memo(() => {
             {" "}
             Head over to{" "}
             <Link
-              className='cursor-pointer text-sky-800 underline underline-offset-4 hover:text-rose-900'
+              className='underline cursor-pointer text-sky-800 underline-offset-4 hover:text-rose-900'
               href={"/search"}>
               {" "}
               Search for Movies{" "}
@@ -98,9 +102,7 @@ const Watchlist: NextPage = React.memo(() => {
         <>
           {/* Render JSX to display the list of movies */}
           <section className='pb-4 text-gray-600'>
-            <div
-              className='my-6 grid grid-cols-1 gap-4 sm:grid-cols-2
-            lg:grid-cols-4 xl:gap-x-4'>
+            <div className='grid grid-cols-1 gap-4 my-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-4'>
               {movies.map((movie: MovieType) => {
                 return (
                   <WatchlistItem
