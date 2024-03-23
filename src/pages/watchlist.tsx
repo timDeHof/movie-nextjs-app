@@ -6,7 +6,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { MovieType } from "@typings/movie.types";
 import noMoviesImage from "../../assets/no-movies-Icon.png";
-import { useUser } from "@providers/userProvider";
 import WatchlistItem from "@components/watchlistItem";
 import { Routes } from "src/config/routes";
 import { isLoggedInAtom } from "src/atoms/user";
@@ -18,7 +17,6 @@ const Watchlist: NextPage = React.memo(() => {
   const [pageLimit] = useState(8);
   const [totalMovies, setTotalMovies] = useState(0);
   const [movies, setMovies] = useState([]);
-  const user = useUser();
   const isLoggedIn = useAtomValue(isLoggedInAtom);
   // Define an asynchronous function to fetch the movies data using an api endpoint.
   const fetchMovies = async (

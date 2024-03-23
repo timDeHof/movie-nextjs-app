@@ -34,7 +34,7 @@ const Movie = (props: { movie: Movies }) => {
   return (
     <>
       <Layout>
-        <div className='flex h-screen flex-col items-center space-y-8 lg:flex-row lg:items-start lg:space-x-8 lg:space-y-0'>
+        <div className='flex flex-col items-center h-screen space-y-8 lg:flex-row lg:items-start lg:space-x-8 lg:space-y-0'>
           <Image
             src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
             alt={movie.title}
@@ -42,18 +42,18 @@ const Movie = (props: { movie: Movies }) => {
             height={460}
             className='w-2/3 rounded-md lg:w-1/4'
           />
-          <div className='flex flex-col justify-items-start space-y-12'>
-            <div className='flex flex-col  items-center justify-between space-y-2 lg:items-start lg:space-y-4'>
-              <h1 className='text-center text-2xl font-bold lg:text-left'>
+          <div className='flex flex-col space-y-12 justify-items-start'>
+            <div className='flex flex-col items-center justify-between space-y-2 lg:items-start lg:space-y-4'>
+              <h1 className='text-2xl font-bold text-center lg:text-left'>
                 {" "}
                 {movie.title}{" "}
               </h1>
-              <div className='flex shrink items-center  space-x-2 pr-2 text-sm'>
+              <div className='flex items-center pr-2 space-x-2 text-sm shrink'>
                 {movie.genres.map((genre) => {
                   return (
                     <div
                       key={genre.name}
-                      className='whitespace-nowrap rounded bg-green-200 px-2 py-1 text-green-700'>
+                      className='px-2 py-1 text-green-700 bg-green-200 rounded whitespace-nowrap'>
                       <p> {genre.name} </p>
                     </div>
                   );
@@ -68,10 +68,9 @@ const Movie = (props: { movie: Movies }) => {
                 rel='preconnect'
                 href={movie.homepage}
                 target='_blank'
-                className='flex items-center space-x-2 rounded-lg bg-black p-2
-                px-5 text-lg text-white '>
+                className='flex items-center p-2 px-5 space-x-2 text-lg text-white bg-black rounded-lg '>
                 <svg
-                  className='h-6 w-6'
+                  className='size-6'
                   fill='currentColor'
                   viewBox='0 0 20 20'
                   xmlns='http://www.w3.org/2000/svg'>

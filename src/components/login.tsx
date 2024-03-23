@@ -12,8 +12,8 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-    const [error, setError] = useState("");
-    const setIsLoggedIn = useSetAtom(isLoggedInAtom)
+  const [error, setError] = useState("");
+  const setIsLoggedIn = useSetAtom(isLoggedInAtom);
 
   const router = useRouter();
 
@@ -33,8 +33,8 @@ const Login = () => {
     event.preventDefault();
 
     try {
-      await user?.login(email, password)
-    setIsLoggedIn(true)
+      await user?.login(email, password);
+      setIsLoggedIn(true);
       const getSession = await account.get();
       console.log("account.get()", getSession);
       const sessionToken = await account.createJWT();
@@ -85,8 +85,7 @@ const Login = () => {
             <label htmlFor='password' className='sr-only'>
               Password
             </label>
-            <div
-              className='relative flex px-3 py-2 border border-gray-300 rounded-md focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm'>
+            <div className='relative flex px-3 py-2 border border-gray-300 rounded-md focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm'>
               <input
                 id='password'
                 name='password'

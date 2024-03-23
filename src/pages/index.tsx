@@ -1,11 +1,11 @@
 // Import the required modules that are needed for displaying the movie list and pagination.
 import axios from "axios";
 import Layout from "src/components/layout";
-import React, {memo} from "react";
+import React, { memo } from "react";
 import { Movies } from "@typings/search.types";
 import MovieCard from "@components/movieCard";
 
-const API_URL = `https://api.themoviedb.org/3/movie/popular?&api_key=${process.env.NEXT_PUBLIC_TMDB_MOVIE_KEY}&include_adult=false&language=en-US&page=1`
+const API_URL = `https://api.themoviedb.org/3/movie/popular?&api_key=${process.env.NEXT_PUBLIC_TMDB_MOVIE_KEY}&include_adult=false&language=en-US&page=1`;
 interface MovieProps {
   movies: Movies[];
 }
@@ -19,7 +19,7 @@ const Home = ({ movies }: MovieProps) => {
           Keep track of your favorite movies and discover new ones.
         </p>
         <div className='grid gap-4 mt-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-4'>
-          {movies.slice(-4).map((movie:Movies) => (
+          {movies.slice(-4).map((movie: Movies) => (
             <MemoizedMovieCard movie={movie} key={movie.id} />
           ))}
         </div>
@@ -28,11 +28,10 @@ const Home = ({ movies }: MovieProps) => {
   );
 };
 
-const MemoizedMovieCard = memo(MovieCard)
+const MemoizedMovieCard = memo(MovieCard);
 export async function getServerSideProps(context: {
   query: { id: string };
 }): Promise<{ props: MovieProps }> {
-  const { id } = context.query;
   try {
     const response = await axios(API_URL);
     const data = await response.data;
@@ -41,7 +40,7 @@ export async function getServerSideProps(context: {
       props: {
         movies: data.results,
       },
-    }
+    };
   } catch (error) {
     console.error(error);
     throw new Error("Failed to fetch movie data");

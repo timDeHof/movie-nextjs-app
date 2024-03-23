@@ -1,14 +1,13 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { Account, Client, Databases, ID } from "appwrite";
 import { account, databases, client} from '../../lib/appwrite'
-
+import { type Client, type Account, type Databases } from "appwrite";
 interface AppwriteProviderProps {
   children: React.ReactNode;
 }
 interface AppwriteContextType {
-  client;
-  account;
-  databases
+  client : Client;
+  account : Account;
+  databases: Databases
   isLoggedIn: boolean;
   setLoggedIn: (loggedIn: boolean) => void;
 }
