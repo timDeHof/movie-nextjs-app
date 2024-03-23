@@ -15,7 +15,6 @@ export default async function handler(
       `${TMDB_URL}&page=${currentPage}&query=${query}`
     );
     const data = await response.data;
-    console.log("response:", data);
     if (data.results.length > 0) {
       const movies = data.results;
       const total_pages = data.total_pages;
