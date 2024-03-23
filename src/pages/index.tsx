@@ -6,9 +6,7 @@ import { Movies } from "@typings/search.types";
 import MovieCard from "@components/movieCard";
 
 const API_URL = `https://api.themoviedb.org/3/movie/popular?&api_key=${process.env.NEXT_PUBLIC_TMDB_MOVIE_KEY}&include_adult=false&language=en-US&page=1`;
-interface MovieProps {
-  movies: Movies[];
-}
+
 // Define the Home component as a functional React component with NextJS's 'NextPage' type.
 const Home = () => {
   const [popularMovies, setPopularMovies] = useState<Movies[]>([])
@@ -22,8 +20,6 @@ const Home = () => {
 
      fetchMovies()
     }, [])
-
-
 
   return (
     <Layout>
