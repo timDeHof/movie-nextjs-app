@@ -42,18 +42,18 @@ const Login = () => {
   };
 
   return (
-    <div className='flex w-full flex-col items-center rounded bg-white p-6 shadow md:w-1/2 lg:w-1/3'>
+    <div className='flex flex-col items-center w-full p-6 bg-white rounded shadow md:w-1/2 lg:w-1/3'>
       <h2
         tabIndex={0}
         role='heading'
         aria-label='Login to your account'
-        className='text-center text-2xl font-extrabold text-gray-800'>
+        className='text-2xl font-extrabold text-center text-gray-800'>
         Login to your account
       </h2>
       <div>
         <span>Don&apos;t have an account </span>
         <Link
-          className='cursor-pointer text-sky-800 underline underline-offset-4 hover:text-rose-900'
+          className='underline cursor-pointer text-sky-800 underline-offset-4 hover:text-rose-900'
           href={Routes.register}>
           Click here
         </Link>
@@ -71,10 +71,7 @@ const Login = () => {
               type='email'
               autoComplete='email'
               required
-              className='relative block w-full appearance-none rounded-md border
-              border-gray-300 px-3 py-2 text-gray-900 placeholder:text-gray-500
-              focus:z-10 focus:border-indigo-500 focus:outline-none
-              focus:ring-indigo-500 sm:text-sm'
+              className='relative block w-full px-3 py-2 text-gray-900 border border-gray-300 rounded-md appearance-none placeholder:text-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm'
               placeholder='Email address'
               value={email}
               onChange={handleEmailChange}
@@ -85,17 +82,14 @@ const Login = () => {
               Password
             </label>
             <div
-              className='relative flex rounded-md border border-gray-300 px-3
-            py-2 focus:z-10 focus:border-indigo-500 focus:outline-none
-            focus:ring-indigo-500 sm:text-sm'>
+              className='relative flex px-3 py-2 border border-gray-300 rounded-md focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm'>
               <input
                 id='password'
                 name='password'
                 type={showPassword ? "text" : "password"}
                 autoComplete='new-password'
                 required
-                className='relative block w-full appearance-none text-gray-900
-                placeholder:text-gray-500 focus:outline-none'
+                className='relative block w-full text-gray-900 appearance-none placeholder:text-gray-500 focus:outline-none'
                 placeholder='Password'
                 value={password}
                 onChange={handlePasswordChange}
@@ -126,11 +120,11 @@ const Login = () => {
           </div>
         </div>
         {error && (
-          <div className='rounded-md bg-red-50 p-4'>
+          <div className='p-4 rounded-md bg-red-50'>
             <div className='flex'>
               <div className='shrink-0'>
                 <svg
-                  className='h-5 w-5 text-red-400'
+                  className='w-5 h-5 text-red-400'
                   viewBox='0 0 20 20'
                   fill='currentColor'>
                   <path
@@ -151,10 +145,10 @@ const Login = () => {
         <div>
           <button
             type='submit'
-            className='group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'>
+            className='relative flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md group hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'>
             <span className='absolute inset-y-0 left-0 flex items-center pl-3'>
               <svg
-                className='h-5 w-5 text-indigo-500 group-hover:text-indigo-400'
+                className='w-5 h-5 text-indigo-500 group-hover:text-indigo-400'
                 xmlns='http://www.w3.org/2000/svg'
                 viewBox='0 0 20 20'
                 fill='currentColor'
