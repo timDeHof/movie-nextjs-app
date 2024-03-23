@@ -1,7 +1,7 @@
 // Import the required modules that are needed for displaying the movie list and pagination.
 import axios from "axios";
 import Layout from "src/components/layout";
-import React, { memo } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { Movies } from "@typings/search.types";
 import MovieCard from "@components/movieCard";
 
@@ -10,7 +10,21 @@ interface MovieProps {
   movies: Movies[];
 }
 // Define the Home component as a functional React component with NextJS's 'NextPage' type.
-const Home = ({ movies }: MovieProps) => {
+const Home = () => {
+  const [popularMovies, setPopularMovies] = useState<Movies[]>([])
+    useEffect(() => {
+        const fetchMovies = async () => {
+            const response = await axios(API_URL)
+            const recentMovies = await response.data.results.slice(-4)
+        setPopularMovies(recentMovies)
+
+        }
+
+     fetchMovies()
+    }, [])
+
+
+
   return (
     <Layout>
       <div className='flex flex-col items-center flex-1 w-full h-screen text-center lg:px-20'>
@@ -19,7 +33,7 @@ const Home = ({ movies }: MovieProps) => {
           Keep track of your favorite movies and discover new ones.
         </p>
         <div className='grid gap-4 mt-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-4'>
-          {movies.slice(-4).map((movie: Movies) => (
+          {popularMovies.map((movie: Movies) => (
             <MemoizedMovieCard movie={movie} key={movie.id} />
           ))}
         </div>
@@ -29,21 +43,5 @@ const Home = ({ movies }: MovieProps) => {
 };
 
 const MemoizedMovieCard = memo(MovieCard);
-export async function getServerSideProps(context: {
-  query: { id: string };
-}): Promise<{ props: MovieProps }> {
-  try {
-    const response = await axios(API_URL);
-    const data = await response.data;
 
-    return {
-      props: {
-        movies: data.results,
-      },
-    };
-  } catch (error) {
-    console.error(error);
-    throw new Error("Failed to fetch movie data");
-  }
-}
 export default Home;

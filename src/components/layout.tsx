@@ -26,7 +26,7 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => {
   const user = useUser();
   const isLoggedIn = useAtomValue(isLoggedInAtom);
-  console.log(isLoggedIn);
+
   return (
     <>
       {/* The header meta tags */}
