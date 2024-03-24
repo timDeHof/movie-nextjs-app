@@ -1,15 +1,17 @@
-import type { NextPage } from "next";
-import Layout from "src/components/layout";
-import Pagination from "src/components/Pagination";
-import React, { useEffect, useState, useCallback } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { MovieType } from "@typings/movie.types";
-import noMoviesImage from "../../assets/no-movies-Icon.png";
-import WatchlistItem from "@components/watchlistItem";
-import { Routes } from "src/config/routes";
-import { isLoggedInAtom } from "src/atoms/user";
-import { useAtomValue } from "jotai";
+import React, { useCallback, useEffect, useState } from 'react';
+import type { NextPage } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
+import { MovieType } from '@/typings/movie.types';
+import { useAtomValue } from 'jotai';
+
+import noMoviesImage from '@/assets/no-movies-Icon.png';
+import { isLoggedInAtom } from '@/atoms/user';
+import Layout from '@/components/layout';
+import Pagination from '@/components/Pagination';
+import WatchlistItem from '@/components/watchlistItem';
+
+import { Routes } from '@/config/routes';
 
 const Watchlist: NextPage = React.memo(() => {
   // Declare necessary state variables for handling offsets and movies.
@@ -33,7 +35,7 @@ const Watchlist: NextPage = React.memo(() => {
   // Define a function to handle deleting a movie item.
   const handleDeleteMovie = useCallback(
     async (movie: MovieType) => {
-      console.log("movie to be deleted:", movie);
+      console.log('movie to be deleted:', movie);
       // Send a request to delete the movie by calling the corresponding api endpoint.
       const response = await fetch(`/api/deleteMovies?documentID=${movie.$id}`);
       // If the response status is successful, fetch the updated movie list.
@@ -64,15 +66,16 @@ const Watchlist: NextPage = React.memo(() => {
   if (!isLoggedIn) {
     return (
       <Layout>
-        <div className='h-screen'>
+        <div className="h-screen">
           <p>
-            Please{" "}
+            Please{' '}
             <Link
-              className='underline cursor-pointer text-sky-800 underline-offset-4 hover:text-rose-900'
-              href={Routes.login}>
+              className="cursor-pointer text-sky-800 underline underline-offset-4 hover:text-rose-900"
+              href={Routes.login}
+            >
               login
-            </Link>{" "}
-            to view the watchlist{" "}
+            </Link>{' '}
+            to view the watchlist{' '}
           </p>
         </div>
       </Layout>
@@ -82,31 +85,33 @@ const Watchlist: NextPage = React.memo(() => {
   return (
     <Layout>
       {movies.length === 0 ? (
-        <div className='flex flex-col items-center justify-center space-y-4 text-xl text-gray-300 opacity-50'>
-          <p className=''>Your watchlist looks empty.</p>
-          <Image src={noMoviesImage} alt='no movies icon'></Image>
+        <div className="flex flex-col items-center justify-center space-y-4 text-xl text-gray-300 opacity-50">
+          <p className="">Your watchlist looks empty.</p>
+          <Image src={noMoviesImage} alt="no movies icon"></Image>
           <p>
-            {" "}
-            Head over to{" "}
+            {' '}
+            Head over to{' '}
             <Link
-              className='underline cursor-pointer text-sky-800 underline-offset-4 hover:text-rose-900'
-              href={"/search"}>
-              {" "}
-              Search for Movies{" "}
-            </Link>{" "}
+              className="cursor-pointer text-sky-800 underline underline-offset-4 hover:text-rose-900"
+              href={'/search'}
+            >
+              {' '}
+              Search for Movies{' '}
+            </Link>{' '}
           </p>
         </div>
       ) : (
         <>
           {/* Render JSX to display the list of movies */}
-          <section className='pb-4 text-gray-600'>
-            <div className='grid grid-cols-1 gap-4 my-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-4'>
+          <section className="pb-4 text-gray-600">
+            <div className="my-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-4">
               {movies.map((movie: MovieType) => {
                 return (
                   <WatchlistItem
                     key={movie.$id}
                     handleDeleteMovie={handleDeleteMovie}
-                    movie={movie}></WatchlistItem>
+                    movie={movie}
+                  ></WatchlistItem>
                 );
               })}
             </div>

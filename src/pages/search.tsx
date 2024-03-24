@@ -1,16 +1,17 @@
-import type { NextPage } from "next";
-import { useState, useEffect } from "react";
-import Layout from "src/components/layout";
-import MovieCard from "src/components/movieCard";
-import { SearchButton } from "src/components/button";
+import { useEffect, useState } from 'react';
+import type { NextPage } from 'next';
+import Link from 'next/link';
+import { useAtomValue } from 'jotai';
 
-import Link from "next/link";
-import { Routes } from "src/config/routes";
-import { isLoggedInAtom } from "src/atoms/user";
-import { useAtomValue } from "jotai";
+import { isLoggedInAtom } from '@/atoms/user';
+import { SearchButton } from '@/components/button';
+import Layout from '@/components/layout';
+import MovieCard from '@/components/movieCard';
+
+import { Routes } from '@/config/routes';
 
 const Search: NextPage = () => {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
   const [allMovies, setAllMovies] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [counts, setCounts] = useState({
@@ -35,7 +36,7 @@ const Search: NextPage = () => {
     const fetchData = async () => {
       try {
         const endpoint =
-          searchTerm === ""
+          searchTerm === ''
             ? `https://api.themoviedb.org/3/movie/popular?&api_key=${process.env.NEXT_PUBLIC_TMDB_MOVIE_KEY}&include_adult=false&language=en-US&page=${currentPage}`
             : `/api/searchMovies?query=${searchTerm}&currentPage=${currentPage}`;
         const response = await fetch(endpoint);
@@ -62,7 +63,7 @@ const Search: NextPage = () => {
         `/api/searchMovies?query=${searchTerm}&currentPage=${currentPage}`,
       );
       const data = await response.json();
-      console.log("search data: ", data);
+      console.log('search data: ', data);
       setAllMovies(data.results);
       setCounts({
         totalPages: data.totalPages,
@@ -75,7 +76,7 @@ const Search: NextPage = () => {
 
   const handleScroll = () => {
     const windowHeight =
-      "innerHeight" in window
+      'innerHeight' in window
         ? window.innerHeight
         : document.documentElement.offsetHeight;
     const body = document.body;
@@ -94,49 +95,50 @@ const Search: NextPage = () => {
   };
 
   useEffect(function () {
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
     <Layout>
       {isLoggedIn ? (
-        <div className='h-full'>
-          <label className='flex flex-row justify-center'>
+        <div className="h-full">
+          <label className="flex flex-row justify-center">
             <input
-              type='text'
+              type="text"
               value={searchTerm}
-              className='block w-1/2 px-6 border-2 border-black rounded-l-lg '
-              placeholder='Search for a movie'
+              className="block w-1/2 rounded-l-lg border-2 border-black px-6 "
+              placeholder="Search for a movie"
               onChange={(e) => onChangeSearch(e.target.value)}
             />
-            <SearchButton onClick={handleSearchMovie} text='find Movie' />
+            <SearchButton onClick={handleSearchMovie} text="find Movie" />
           </label>
           <div>
-            <h1 className='text-2xl font-bold'>
-              {searchTerm ? `Results for: ${searchTerm}` : "Latest movies"}
+            <h1 className="text-2xl font-bold">
+              {searchTerm ? `Results for: ${searchTerm}` : 'Latest movies'}
             </h1>
-            <hr className='text-gray-900 border-black'></hr>
+            <hr className="border-black text-gray-900"></hr>
           </div>
-          <div className='grid grid-cols-1 gap-16 mt-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-16'>
+          <div className="mt-6 grid grid-cols-1 gap-16 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-16">
             {allMovies &&
               allMovies.map((movie, id) => (
-                <div className='flex' key={id}>
+                <div className="flex" key={id}>
                   <MovieCard movie={movie} />
                 </div>
               ))}
           </div>
         </div>
       ) : (
-        <div className='h-screen'>
+        <div className="h-screen">
           <p>
-            Please{" "}
+            Please{' '}
             <Link
-              className='underline cursor-pointer text-sky-800 underline-offset-4 hover:text-rose-900'
-              href={Routes.login}>
+              className="cursor-pointer text-sky-800 underline underline-offset-4 hover:text-rose-900"
+              href={Routes.login}
+            >
               login
-            </Link>{" "}
+            </Link>{' '}
             search for movies
           </p>
         </div>
