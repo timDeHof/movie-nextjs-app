@@ -22,10 +22,11 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["/*"],
+      "@/*": ["./*"],
       "@components/*": ["src/components/*"],
       "@typings/*": ["typings/*"],
       "@providers/*": ["src/providers/*"]
+
     }
   },
   "include": [

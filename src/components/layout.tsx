@@ -6,8 +6,8 @@ const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
 });
-import React from "react";
-import { useAtomValue } from "jotai";
+import React, { useEffect } from "react";
+import { useAtom } from "jotai";
 // Importing necessary components from the 'next/link', 'next/head', and 'next/image' libraries.
 import Link from "next/link";
 import Head from "next/head";
@@ -15,6 +15,7 @@ import Image from "next/image";
 import { Routes } from "../config/routes";
 
 import { useUser } from "@providers/userProvider";
+import { client } from "@/lib/appwrite";
 // Importing an SVG logo file as a variable named 'reelLogo'
 import reelLogo from "../../assets/film-reel-svgrepo-com.svg";
 import { isLoggedInAtom } from "src/atoms/user";
@@ -24,8 +25,24 @@ interface LayoutProps {
 }
 
 const Layout = ({ children }: LayoutProps) => {
-  const user = useUser();
-  const isLoggedIn = useAtomValue(isLoggedInAtom);
+    const user = useUser();
+  const [isLoggedIn, setIsLoggedIn] = useAtom(isLoggedInAtom);
+useEffect(() => {
+  // Check if session token exists in cookie or local storage
+  const sessionToken =
+    localStorage.getItem("sessionToken") ??
+    document.cookie.replace(
+      /(?:(?:^|.*;\s*)sessionToken\s*\=\s*([^;]*).*$)|^.*$/,
+      "$1",
+    );
+  if (sessionToken) {
+    // Set session using stored token
+    client.setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT as string);
+    client.setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID as string);
+    client.setJWT(sessionToken);
+    setIsLoggedIn(true);
+  }
+}, [client]);
 
   return (
     <>

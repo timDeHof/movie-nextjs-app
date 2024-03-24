@@ -40,21 +40,7 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
         await login(email, password)
     }
 
-    async function init() {
-    try {
-        const loggedIn = await account.get();
-        if (loggedIn) {
-            setUser(loggedIn)
-            setIsLoggedIn(true)
-        }
-    } catch (error) {
-        setUser(null)
-    }
-    }
 
-    useEffect(() => {
-        init()
-    },[])
 
     return (
         <UserContext.Provider value={{ current: user, login, logout, register}}>

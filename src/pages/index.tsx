@@ -15,7 +15,6 @@ const Home = () => {
             const response = await axios(API_URL)
             const recentMovies = await response.data.results.slice(-4)
         setPopularMovies(recentMovies)
-
         }
 
      fetchMovies()
