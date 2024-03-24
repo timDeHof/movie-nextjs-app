@@ -3,9 +3,11 @@ import { useState, useEffect } from "react";
 import Layout from "src/components/layout";
 import MovieCard from "src/components/movieCard";
 import { SearchButton } from "src/components/button";
-import { useAppwrite } from "@providers/appwriteProvider";
+
 import Link from "next/link";
 import { Routes } from "src/config/routes";
+import { isLoggedInAtom } from "src/atoms/user";
+import { useAtomValue } from "jotai";
 
 const Search: NextPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -15,8 +17,8 @@ const Search: NextPage = () => {
     totalPages: 500,
     totalResults: 1000,
   });
+  const isLoggedIn = useAtomValue(isLoggedInAtom);
 
-  const { isLoggedIn } = useAppwrite();
   const hasNext = counts.totalPages > currentPage;
 
   const loadMoreItems = () => {
@@ -105,7 +107,7 @@ const Search: NextPage = () => {
             <input
               type='text'
               value={searchTerm}
-              className=' block w-1/2 rounded-l-lg border-2 border-black px-6'
+              className='block w-1/2 px-6 border-2 border-black rounded-l-lg '
               placeholder='Search for a movie'
               onChange={(e) => onChangeSearch(e.target.value)}
             />
@@ -115,11 +117,9 @@ const Search: NextPage = () => {
             <h1 className='text-2xl font-bold'>
               {searchTerm ? `Results for: ${searchTerm}` : "Latest movies"}
             </h1>
-            <hr className='border-black text-gray-900'></hr>
+            <hr className='text-gray-900 border-black'></hr>
           </div>
-          <div
-            className='mt-6 grid grid-cols-1 gap-16 sm:grid-cols-2
-          lg:grid-cols-4 xl:gap-x-16'>
+          <div className='grid grid-cols-1 gap-16 mt-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-16'>
             {allMovies &&
               allMovies.map((movie, id) => (
                 <div className='flex' key={id}>
@@ -133,7 +133,7 @@ const Search: NextPage = () => {
           <p>
             Please{" "}
             <Link
-              className='cursor-pointer text-sky-800 underline underline-offset-4 hover:text-rose-900'
+              className='underline cursor-pointer text-sky-800 underline-offset-4 hover:text-rose-900'
               href={Routes.login}>
               login
             </Link>{" "}
