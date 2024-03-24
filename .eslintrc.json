@@ -11,6 +11,8 @@
     "no-empty-function": "off",
     "@typescript-eslint/no-empty-function": "off",
     "react-hooks/rules-of-hooks": "error", // For checking rules of hooks
-    "react-hooks/exhaustive-deps": "off" // For checking hook dependencies
+    "react-hooks/exhaustive-deps": "off", // For checking hook dependencies
+    "tailwindcss/classnames-order": "off",
+    "tailwindcss/enforces-shorthand": "off"
   }
 }

@@ -1,5 +1,5 @@
 import { ID , type Models} from 'appwrite';
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 import { account } from '../../lib/appwrite';
 import { isLoggedInAtom } from 'src/atoms/user';
 import { useSetAtom } from 'jotai';
