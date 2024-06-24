@@ -1,5 +1,6 @@
 import React from 'react';
 import { AppProps } from 'next/app';
+import Head from 'next/head';
 import { Provider } from 'jotai';
 
 import { WatchlistProvider } from '@/providers/databaseProvider';
@@ -9,13 +10,18 @@ import '@/styles/globals.css';
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (
-    <UserProvider>
-      <WatchlistProvider>
-        <Provider>
-          <Component {...pageProps} />
-        </Provider>
-      </WatchlistProvider>
-    </UserProvider>
+    <>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </Head>
+      <UserProvider>
+        <WatchlistProvider>
+          <Provider>
+            <Component {...pageProps} />
+          </Provider>
+        </WatchlistProvider>
+      </UserProvider>
+    </>
   );
 };
 
