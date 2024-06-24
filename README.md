@@ -17,7 +17,6 @@
 
 **Reelwatch** is where your movie watchlist dreams come to life! Built with love using Next.js, TypeScript, Tailwind CSS, and powered by Appwrite Cloud, we're here to bring you an enthralling experience tailored for movie buffs. Dive into a world where your favorite films are just a search away and creating a personal watchlist is easier than ever.
 
-
 ## 🌟 Features
 
 - **Endless Movie Search**: Powered by the TMDB API, find your next movie gem in a snap.
@@ -25,7 +24,6 @@
 - **Flawless on Any Screen**: Designed to look and work perfectly on any device.
 - **Secure User Experience**: Log in confidently with top-notch security.
 
-  
 ![Homepage](https://cdn.hashnode.com/res/hashnode/image/upload/v1686532494367/d09e48f2-4028-4ca9-849d-89e00edfa175.gif)
 
 ### 🏠 [Embark on Your Movie Journey](https://reelwatch.vercel.app/)
@@ -43,19 +41,20 @@
 
 1. **Clone the project to get started**:
    Get the code on your local machine and install its dependencies.
-    ```bash
-    git clone https://github.com/timDeHof/movie-nextjs-app.git
-    cd movie-nextjs-app
-    ```
+   ```bash
+   git clone https://github.com/timDeHof/movie-nextjs-app.git
+   cd movie-nextjs-app
+   ```
 2. **Install dependencies**:
-    ```bash
-    npm install
-    # or if you use yarn
-    yarn
-    ```
+
+   ```bash
+   npm install
+   # or if you use yarn
+   yarn
+   ```
 
 3. **Set up your environment**:
-    Duplicate `.env.local.template` to `.env.local` and fill it with your keys.
+   Duplicate `.env.local.template` to `.env.local` and fill it with your keys.
    ```bash
    NEXT_PUBLIC_APPWRITE_ENDPOINT="[APPWRITE_ENDPOINT]"
    NEXT_PUBLIC_APPWRITE_PROJECT_ID="[APPWRITE_PROJECT_ID]"
@@ -65,12 +64,12 @@
    NEXT_PUBLIC_TMDB_MOVIE_KEY="[TMDB_MOVIE_KEY]"
    ```
 4. **Fire up the development server**:
-    Launch the app and explore it on your local machine.
-    ```bash
-    npm run dev
-    # or with yarn
-    yarn dev
-    ```
+   Launch the app and explore it on your local machine.
+   ```bash
+   npm run dev
+   # or with yarn
+   yarn dev
+   ```
 
 Visit [http://localhost:3000](http://localhost:3000) to see your application running.
 

@@ -1,13 +1,15 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
-import { account, databases, client} from '../../lib/appwrite'
-import { type Client, type Account, type Databases } from "appwrite";
+import React, { createContext, useContext, useEffect, useState } from 'react';
+import { type Account, type Client, type Databases } from 'appwrite';
+
+import { account, client, databases } from '@/lib/appwrite';
+
 interface AppwriteProviderProps {
   children: React.ReactNode;
 }
 interface AppwriteContextType {
-  client : Client;
-  account : Account;
-  databases: Databases
+  client: Client;
+  account: Account;
+  databases: Databases;
   isLoggedIn: boolean;
   setLoggedIn: (loggedIn: boolean) => void;
 }
@@ -25,16 +27,15 @@ export const useAppwrite = () => useContext(AppwriteContext);
 export const AppwriteProvider: React.FC<AppwriteProviderProps> = ({
   children,
 }) => {
-
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     // Check if session token exists in cookie or local storage
     const sessionToken =
-      localStorage.getItem("sessionToken") ||
+      localStorage.getItem('sessionToken') ||
       document.cookie.replace(
         /(?:(?:^|.*;\s*)sessionToken\s*\=\s*([^;]*).*$)|^.*$/,
-        "$1"
+        '$1',
       );
     if (sessionToken) {
       // Set session using stored token
@@ -47,8 +48,8 @@ export const AppwriteProvider: React.FC<AppwriteProviderProps> = ({
   const setLoggedIn = (loggedIn: boolean) => {
     setIsLoggedIn(loggedIn);
     if (!loggedIn) {
-      localStorage.removeItem("sessionToken");
-      document.cookie = "sessionToken=";
+      localStorage.removeItem('sessionToken');
+      document.cookie = 'sessionToken=';
     }
   };
 
