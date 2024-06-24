@@ -112,7 +112,7 @@ const Search: NextPage = () => {
               placeholder="Search for a movie"
               onChange={(e) => onChangeSearch(e.target.value)}
             />
-            <SearchButton onClick={handleSearchMovie} text="find Movie" />
+            <SearchButton onClick={handleSearchMovie} text="Find movie" />
           </label>
           <div>
             <h1 className="text-2xl font-bold">

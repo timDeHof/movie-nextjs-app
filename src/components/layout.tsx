@@ -4,16 +4,12 @@
 import React, { useEffect } from 'react';
 import { Inter } from 'next/font/google';
 import Head from 'next/head';
-import Image from 'next/image';
-import Link from 'next/link';
 import { useAtom } from 'jotai';
 
-import reelLogo from '@/assets/film-reel-svgrepo-com.svg';
 import { isLoggedInAtom } from '@/atoms/user';
 import { client } from '@/lib/appwrite';
 import { useUser } from '@/providers/userProvider';
-
-import { Routes } from '@/config/routes';
+import Header from './header';
 
 // Initializing the 'Inter' font object with a subset of "latin"
 const inter = Inter({
@@ -71,67 +67,9 @@ const Layout = ({ children }: LayoutProps) => {
         <title>ReelWatch</title>
       </Head>
       {/* The header section */}
-      <header className="w-screen text-sky-800">
-        <div
-          className="flex w-screen flex-col flex-wrap items-center
-        bg-header-image bg-cover bg-[center_20%] px-20 py-8 opacity-70
-        bg-blend-multiply md:flex-row"
-        >
-          {/* The application logo */}
-          <Link rel="preconnect" href={Routes.home}>
-            <div className="flex max-w-xs flex-row space-x-2">
-              <Image src={reelLogo} alt={'logo'} width={32} height={32} />
-              {/* The branding text which consists of the words 'Reel' and 'Watch' */}
-              <div className="flex items-end justify-center lg:border-l-black">
-                <p className="flex cursor-pointer items-center justify-center text-2xl font-medium text-white md:mb-0">
-                  Reel
-                </p>
-                <span className="flex cursor-pointer items-end text-xl font-medium text-sky-800">
-                  Watch
-                </span>
-              </div>
-            </div>
-          </Link>
-          {/* The navigation menu */}
-          <nav className="flex flex-wrap items-center justify-center text-base md:ml-4 md:mr-auto md:border-l md:border-gray-400 md:py-1 md:pl-4">
-            <span className="mr-5 hover:text-sky-900">
-              <Link href={Routes.search}>Find Movies</Link>
-            </span>
-            <span className="mr-5 hover:text-sky-900">
-              <Link rel="preconnect" href={Routes.watchList}>
-                My Watchlist
-              </Link>
-            </span>
-          </nav>
-          {isLoggedIn ? (
-            <button
-              className="rounded-lg bg-sky-800 p-2 px-4 text-sm uppercase text-white hover:bg-sky-900"
-              onClick={() => user?.logout()}
-            >
-              logout
-            </button>
-          ) : (
-            <div className="flex w-full justify-around lg:w-2/12">
-              <Link
-                className="rounded-lg bg-sky-800 p-2 px-4 text-sm uppercase text-white hover:bg-sky-900"
-                rel="preconnect"
-                href={Routes.login}
-              >
-                Login
-              </Link>
-              <Link
-                className="rounded-lg bg-sky-800 p-2 px-4 text-sm uppercase text-white hover:bg-sky-900"
-                rel="preconnect"
-                href={Routes.register}
-              >
-                Register
-              </Link>
-            </div>
-          )}
-        </div>
-      </header>
-      {/* The container for child components */}
+      <Header user={user} isLoggedIn={isLoggedIn} />
       <div className={`${inter.variable} container mx-auto p-8`}>
+        {/* The container for child components */}
         {children}
       </div>
     </>
