@@ -5,7 +5,7 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:tailwindcss/recommended"
   ],
-  "plugins": ["@typescript-eslint", "react-hooks"],
+  "plugins": ["@typescript-eslint"],
   "rules": {
     "react/display-name": "off",
     "no-empty-function": "off",

@@ -1,42 +1,46 @@
 {
-  "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "incremental": true,
+    "compilerOptions": {
+        "target": "es5",
+        "lib": ["dom", "dom.iterable", "esnext"],
+        "allowJs": true,
+        "skipLibCheck": true,
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
+        "noEmit": true,
+        "esModuleInterop": true,
+        "module": "esnext",
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "jsx": "preserve",
+        "incremental": true,
 
-    "plugins": [
-      {
-        "name": "next"
-      }
+        "plugins": [
+            {
+                "name": "next"
+            }
+        ],
+        "baseUrl": ".",
+        "paths": {
+            "@/*": ["./*"],
+            "@/components/*": ["src/components/*"],
+            "@/typings/*": ["typings/*"],
+            "@/providers/*": ["src/providers/*"],
+            "@/atoms/*": ["src/atoms/*"],
+            "@/config/*": ["src/config/*"],
+            "@/styles/*": ["/styles/*"]
+        }
+    },
+    "include": [
+        "next-env.d.ts",
+        "**/*.ts",
+        "**/*.tsx",
+        ".next/types/**/*.ts",
+        "src/pages/seed.js",
+        "styles/globals.css",
+        "src/components/layout.tsx",
+        "src/components/Pagination.tsx",
+        "src/providers/userProvider.tsx"
     ],
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["/*"],
-      "@components/*": ["src/components/*"],
-      "@typings/*": ["typings/*"],
-      "@providers/*": ["src/providers/*"]
-    }
-  },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts",
-    "src/pages/seed.js",
-    "styles/globals.css",
-    "src/components/layout.tsx",
-    "src/components/Pagination.tsx"
-  ],
-  "exclude": ["node_modules"]
+    "exclude": ["node_modules"]
 }
