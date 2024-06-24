@@ -4,8 +4,8 @@ import { useRouter } from 'next/router';
 import { useSetAtom } from 'jotai';
 
 import { isLoggedInAtom } from '@/atoms/user';
-import { account } from '@/lib/appwrite';
 import { useUser } from '@/providers/userProvider';
+import { account } from '../lib/appwrite';
 
 import { Routes } from '@/config/routes';
 

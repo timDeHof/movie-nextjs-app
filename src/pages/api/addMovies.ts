@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { Query } from 'appwrite';
 import { v4 as uuidv4 } from 'uuid';
 
-import { databases } from '@/lib/appwrite';
+import { databases } from '../../lib/appwrite';
 
 type Data = {
   data?: string;
